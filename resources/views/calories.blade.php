@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('style-css')
+    <link rel="stylesheet" href="{{asset('assets/css/cal.css')}}">
+@stop
 @section('content')
     <div class="slider" style="background-image: url({{asset('assets/imgs/home-banner1.jpg')}})">
         <p>Calculate your Calories</p>

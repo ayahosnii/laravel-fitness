@@ -15,19 +15,42 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/wizard.css') }}" rel="stylesheet">
+{{--    @if(App::getLocale() == 'en')--}}
     <link href="{{ asset('assets/bootstrap/css/bootstrap.css') }}"  rel="stylesheet">
+   {{-- @elseif(App::getLocale() == 'ar')
+    <link href="{{ asset('assets/bootstrap/css/bootstrap.rtl.css') }}"  rel="stylesheet">
+    @endif--}}
     @livewireStyles
+    @yield('style-css')
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Hello') }}
+                <a class="navbar-brand m-0 p-0" href="{{ url('/') }}">
+                    <img src="{{asset('assets/imgs/logo.png')}}">
+                </a>
+                <a class="nav-link mx-3" href="{{ url('/meals') }}">
+                    My Food
+                </a>
+                <a class="nav-link mx-3" href="{{ url('/calories-calculate') }}">
+                    Apps
+                </a>
+                <a class="nav-link mx-3" href="#">
+                    Exercies
+                </a>
+                <a class="nav-link mx-3" href="#">
+                    Gym
+                </a>
+                <a class="nav-link mx-3" href="#">
+                    Store
+                </a>
+                <a class="nav-link mx-3" href="#">
+                    Bloggers
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -35,10 +58,12 @@
 
                     </ul>
 
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
+
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -53,25 +78,51 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    @if (App::getLocale() == 'ar')
+                                        {{ LaravelLocalization::getCurrentLocaleName() }}
+                                        <img src="{{ asset('assets/imgs/flags/EG.png') }}" alt="">
+
+                                    @else
+                                        {{ LaravelLocalization::getCurrentLocaleName() }}
+                                        <img src="{{ asset('assets/imgs/flags/US.png') }}" alt="">
+                                    @endif
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                        <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                            {{ $properties['native'] }}
+                                        </a>
+                                    @endforeach
+                                </div>
+
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('profile',  Auth::user()->id)}}">
+
+                                        Setting
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
+
+
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                             @endguest
                     </ul>
                 </div>
-            </div>
         </nav>
 
         <main class="py-4">

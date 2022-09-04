@@ -12,7 +12,10 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "*",
-        "livewire/livewire": "^2.10"
+        "livewire/livewire": "^2.10",
+        "mcamara/laravel-localization": "^1.7",
+        "overtrue/laravel-follow": "*",
+        "spatie/laravel-translatable": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

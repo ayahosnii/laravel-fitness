@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\View\Composers\ProfileComposer;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        view()->composer('*', function () {
+            View::composer('layouts.app', ProfileComposer::class);
+        });
     }
 
     /**

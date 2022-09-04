@@ -7,10 +7,10 @@ use Livewire\Component;
 
 class Counter extends Component
 {
-//    public $count = 0;
+    public $count = 0;
     public $search = '';
 
-    /*public function increment()
+    public function increment()
     {
         $this->count++;
     }
@@ -18,7 +18,7 @@ class Counter extends Component
     public function m()
     {
         $this->count--;
-    }*/
+    }
 
     public function render()
     {
