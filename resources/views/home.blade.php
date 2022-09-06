@@ -16,6 +16,22 @@
 
                     {{ __('You are logged in!') }}
                         <livewire:counter />
+                    {{--@foreach ($period as $date)
+                    {{$date->format('Y-m-d')}}
+                    @endforeach--}}
+
+                    @foreach($foods as $food)
+                        {{$food->calories}}
+                        @endforeach
+
+
+                        @if ($foods->hasPages())
+                            <div class="pagination-wrapper">
+                                {{ $foods->links() }}
+                            </div>
+                        @endif
+
+
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ use Overtrue\LaravelFollow;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use LaravelFollow\Followable;
 
     /**
      * The attributes that are mass assignable.

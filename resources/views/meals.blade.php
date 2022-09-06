@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <a type="button" class="btn btn-success" href="{{route('add.food')}}">Add Food +</a>
-            <a type="button" class="btn btn-success" href="#">Add Meal +</a>
+            <a type="button" class="btn btn-pink" href="{{route('add.food')}}">Add Food +</a>
+            <a type="button" class="btn btn-pink" href="#">Add Meal +</a>
         </div>
     </div>
 
@@ -39,5 +39,17 @@
         </tr>
         </tbody>
     </table>
+</div>
+
+<div class="calendar-header">
+			<span class="btn btn-prev">
+				<i class="icon-angle-left"></i>
+			</span>
+
+    <span class="">July</span>
+
+    <span class="btn btn-next">
+				<i class="icon-angle-right"></i>
+			</span>
 </div>
 @endsection

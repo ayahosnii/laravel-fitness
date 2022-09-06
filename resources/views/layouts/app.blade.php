@@ -29,6 +29,13 @@
                 <a class="navbar-brand m-0 p-0" href="{{ url('/') }}">
                     <img src="{{asset('assets/imgs/logo.png')}}">
                 </a>
+            @if (Route::has('login'))
+                @auth
+                    <a class="nav-link mx-3" href="{{ url('/home') }}">
+                        Home
+                    </a>
+                @endauth
+            @endif
                 <a class="nav-link mx-3" href="{{ url('/meals') }}">
                     My Food
                 </a>
