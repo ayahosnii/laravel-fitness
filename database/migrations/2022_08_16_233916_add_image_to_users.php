@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBreakfastsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateBreakfastsTable extends Migration
      */
     public function up()
     {
-        Schema::create('breakfasts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('image')->after('id')->default('assets/imgs/default-profile-picture.png');
         });
     }
 
@@ -26,6 +25,8 @@ class CreateBreakfastsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('breakfasts');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
-}
+};
