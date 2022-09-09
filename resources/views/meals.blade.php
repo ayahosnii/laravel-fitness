@@ -6,50 +6,44 @@
         <div class="col-md-12">
             <a type="button" class="btn btn-pink" href="{{route('add.food')}}">Add Food +</a>
             <a type="button" class="btn btn-pink" href="#">Add Meal +</a>
+            <a type="button" class="btn btn-pink" href="{{route('dairy')}}">Food dairy +</a>
         </div>
     </div>
+<br>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-my-food-tab" data-bs-toggle="tab" data-bs-target="#nav-my-food" type="button" role="tab" aria-controls="nav-my-food" aria-selected="true">My Food</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-my-food" role="tabpanel" aria-labelledby="nav-my-food-tab">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Food Name</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($foods as $food=>$item)
 
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Food Name</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+                    <tr>
+                        <th scope="row">{{$food}}</th>
+                        <td>{{$item->Food_Name}}</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                @endforeach
+                </tbody>
+            </table>
 
-<div class="calendar-header">
-			<span class="btn btn-prev">
-				<i class="icon-angle-left"></i>
-			</span>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+    </div>
 
-    <span class="">July</span>
 
-    <span class="btn btn-next">
-				<i class="icon-angle-right"></i>
-			</span>
 </div>
 @endsection

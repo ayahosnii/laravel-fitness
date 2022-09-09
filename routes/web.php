@@ -35,6 +35,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/calories-calculate', [App\Http\Controllers\CalorieCalculatorController::class, 'index'])->name('calorie');
     Route::post('/calories-calculate/store', [App\Http\Controllers\CalorieCalculatorController::class, 'store'])->name('calorie.store');
     Route::get('/meals', [\App\Http\Controllers\MealController::class, 'index'])->name('meals');
+    Route::get('/food-dairy', [\App\Http\Controllers\FoodDairyController::class, 'index'])->name('dairy');
+    Route::get('/food-dairy/add-breakfast', [\App\Http\Controllers\FoodDairyController::class, 'breakfast'])->name('dairy.breakfast');
+    Route::get('/food-dairy/add-lunch', [\App\Http\Controllers\FoodDairyController::class, 'lunch'])->name('dairy.lunch');
+    Route::get('/food-dairy/add-dinner', [\App\Http\Controllers\FoodDairyController::class, 'dinner'])->name('dairy.dinner');
+    Route::post('/food-dairy/store', [\App\Http\Controllers\FoodDairyController::class, 'store'])->name('dairy.store');
 
 
     Route::get('/counter', \App\Http\Livewire\Counter::class);

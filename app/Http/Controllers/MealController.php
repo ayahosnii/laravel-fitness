@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AddFood;
 use App\Models\Meal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MealController extends Controller
 {
@@ -14,7 +16,13 @@ class MealController extends Controller
      */
     public function index()
     {
-        return view('meals');
+        $foods = AddFood::where('user_id', Auth::user()->id)->get();
+        $length = count($foods);
+        $Auth = Auth::user()->id;
+    {
+
+    }
+        return view('meals', compact('foods', 'length'));
     }
 
     public function addFood()
