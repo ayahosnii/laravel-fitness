@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateDinnersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('meals', function (Blueprint $table) {
+        Schema::create('dinners', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('food_id')->unsigned();
+            $table->bigInteger('food_id')->unsigned()->nullable();
+            $table->float('serving_size');
+            $table->float('servings_per_container');
+            $table->bigInteger('unit_id')->unsigned()->nullable();
             $table->timestamps();
             $table->foreign('food_id')->references('id')->on('food')->onDelete('cascade');
+            $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
         });
     }
 
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meals');
+        Schema::dropIfExists('dinners');
     }
-};
+}
