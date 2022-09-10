@@ -40,11 +40,21 @@ class FoodDairyController extends Controller
     {
         return view();
     }
+
+    public function breakfastStore()
+    {
+        return view();
+    }
     public function lunch()
     {
         return view();
     }
-    public function dinner()
+
+    public function lunchStore()
+    {
+        return view();
+    }
+    public function dinnerStore()
     {
         return view();
     }

@@ -18,7 +18,7 @@
     }
 
     /* The search field */
-    #myInput {
+    #inputSearch {
         box-sizing: border-box;
         background-image: url('http://127.0.0.1:8000/assets/imgs/icons/searchicon.png');
         background-position: 14px 12px;
@@ -31,7 +31,7 @@
     }
 
     /* The search field when it gets focus/clicked on */
-    #myInput:focus {outline: 3px solid #ddd;}
+    #inputSearch:focus {outline: 3px solid #ddd;}
 
     /* The container <div> - needed to position the dropdown content */
     .dropdown {
@@ -65,7 +65,7 @@
     /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
     .show {display:block;}
 
-    .form-food{
+    #form-food-div{
         background-color: #f6f6f6;
         height: 250px;
         width: 500px;
@@ -129,15 +129,15 @@
                 <th scope="col">#</th>
                 <th scope="col">
                     BreakFast
-                    <a type="button" class="btn btn-pink" id="breakfast" href="#" onclick="myFunction()">+</a>
+                    <a type="button" class="btn btn-pink" id="breakfastBtn" href="#" onclick="showFoodList()">+</a>
                 </th>
                 <th scope="col">
                     Lunch
-                    <a type="button" class="btn btn-pink" id="lunch" href="#">+</a>
+                    <a type="button" class="btn btn-pink" id="lunchBtn" href="#" onclick="showFoodList()">+</a>
                 </th>
                 <th scope="col">
                     Dinner
-                    <a type="button" class="btn btn-pink" id="lunch" href="#">+</a>
+                    <a type="button" class="btn btn-pink" id="dinnerBtn" href="#" onclick="showFoodList()">+</a>
                 </th>
             </tr>
             </thead>
@@ -165,34 +165,37 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                @foreach($dairies_yes as $key=>$dairy)
+            @foreach($dairies_yes as $key=>$dairy)
+
+                <tr>
                     <th scope="row">{{$key}}</th>
                     <td>{{$dairy->foods->Food_Name}}</td>
                     <td>{{$dairy->lunchs->Food_Name}}</td>
                     <td>{{$dairy->dinners->Food_Name}}</td>
-                @endforeach
             </tr>
+            @endforeach
+
             </tbody>
         </table>
 
     </div>
 
     <div class="dropdown">
-        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-        <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="inputSearch" style="display: none" onkeyup="searchFunction()">
+        <div id="myFoodList" class="dropdown-content">
             @foreach($foods as $food)
             <a href="#" id="foody" data-id="{{$food->id}}"  onclick="myfun(this)">{{$food->Food_Name}}</a>
             @endforeach
         </div>
     </div>
 
-    <div class="form-food">
-        <form>
+    <div id="form-food-div" style="display: none">
+        <form id="form-meals" action="" method="post">
+            @csrf
         <p id="foodname"></p>
             <div class="row">
                 <div class="col-md-12">
-                    <input name="food_id" id="food_id" {{--style="display: none"--}} style="display: none" readonly>
+                    <input name="food_id" id="food_id" style="display: none" readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="">Serving Size</label>
@@ -204,7 +207,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="">Created_at</label>
-                    <input>
+                    <input id="created_at" >
                 </div>
             </div>
             <a type="button" class="btn btn-pink my-3" id="add-f" href="#">Add breakfast</a>
@@ -216,19 +219,30 @@
         const yesterday = document.getElementById('yesterday');
         const today = document.getElementById('today');
         const tomorrow = document.getElementById('tomorrow');
+
+        const breakfastBtn = document.getElementById('breakfastBtn');
+        const lunchBtn = document.getElementById('lunchBtn');
+        const dinnerBtn = document.getElementById('dinnerBtn');
+
+        const food_list = document.getElementById("myFoodList")
         const yes_tr = document.getElementById('yes_tr');
         const tod_tr = document.getElementById('tod_tr');
 
-        yesterday.addEventListener('click', () => {
+        var a = document.getElementsByTagName("a")
+        var inpSearch = document.getElementById("inputSearch");
+        var foodFormDiv = document.getElementById("form-food-div");
+        var mealForm = document.getElementById("form-meals");
+        var foodServing = document.getElementById('myFormId');
 
 
+        /*yesterday.addEventListener('click', () => {
 
             if (yes_tr.style.display === 'none') {
                 // 👇️ this SHOWS the form
                 yes_tr.style.display = 'table'
                 tod_tr.style.display = 'none';
             }
-        });
+        });*/
 
 
         today.addEventListener('click', () => {
@@ -240,22 +254,24 @@
             }
         });
 
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
+        function showFoodList() {
+            food_list.classList.toggle("show");
+            inpSearch.style.display = 'block';
+            foodFormDiv.style.display = 'block';
         }
 
-        function filterFunction() {
-            var input, filter, ul, li, a, i;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            div = document.getElementById("myDropdown");
-            a = div.getElementsByTagName("a");
-            for (i = 0; i < a.length; i++) {
-                txtValue = a[i].textContent || a[i].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    a[i].style.display = "";
+        function searchFunction() {
+            var search_input, serFoodUpCase, ul, li, a_food, i;
+            search_input = inpSearch
+            serFoodUpCase = search_input.value.toUpperCase();
+            foodlist = food_list;
+            a_food = foodlist.getElementsByTagName("a");
+            for (i = 0; i < a_food.length; i++) {
+                foodLinkValue = a_food[i].textContent || a_food[i].innerText;
+                if (foodLinkValue.toUpperCase().indexOf(serFoodUpCase) > -1) {
+                    a_food[i].style.display = "";
                 } else {
-                    a[i].style.display = "none";
+                    a_food[i].style.display = "none";
                 }
             }
         }
@@ -265,12 +281,106 @@
         }
 
 
-        var a = document.getElementsByTagName("a")
         $(function(){
             $(a).click(function(){
                 var foodid = $(this).attr('data-id');
                 $('#food_id').val(foodid);
                 var foodid = null;
+            });
+        });
+
+
+
+
+        // Get dates
+        function getToday(date = new Date()) {
+            const today_d = new Date(date.getTime())
+            today_d.setDate(date.getDate())
+
+            var dd = String(today_d.getDate()).padStart(2, '0');
+            var mm = String(today_d.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today_d.getFullYear();
+            let today = dd + '-' + mm + '-' + yyyy;
+
+            return today
+        }
+        function getPreviousDay(date = new Date()) {
+            const previous_d = new Date(date.getTime());
+            previous_d.setDate(date.getDate() - 1)
+
+            let dd = String(previous_d.getDate()).padStart(2, '0');
+            let mm = String(previous_d.getMonth() + 1).padStart(2, '0')
+            let yyyy = previous_d.getFullYear()
+
+            let previouss = dd + '-' + mm + '-' + yyyy;
+
+            return previouss
+        }
+        function getNextDay(date = new Date()) {
+            const next_d = new Date(date.getTime());
+            next_d.setDate(date.getDate() + 1)
+
+            let dd = String(next_d.getDate()).padStart(2, '0');
+            let mm = String(next_d.getMonth() + 1).padStart(2, '0')
+            let yyyy = next_d.getFullYear()
+
+            let nextt = dd + '-' + mm + '-' + yyyy;
+
+            return nextt
+        }
+
+        //Get time
+        var time = new Date();
+        var hh = String(time.getHours()).padStart(2, '0');
+        var mi = String(time.getMinutes()).padStart(2, '0');
+        var ss = String(time.getSeconds()).padStart(2, '0');
+
+
+        time = hh + ':' + mi + ':' + ss;
+
+
+        // Function when click yesterday button
+        $(function (){
+            $(yesterday).click(function (){
+                $('#created_at').val(getPreviousDay())
+
+                if (yes_tr.style.display === 'none') {
+                    // 👇️ this SHOWS the form
+                    yes_tr.style.display = 'table'
+                    tod_tr.style.display = 'none';
+                }
+            })
+        })
+
+        // Function when click today button
+        $(function (){
+            $(today).click(function (){
+                $('#created_at').val(getToday() +" "+ time)
+            })
+        })
+
+        $(function (){
+            $(tomorrow).click(function (){
+                $('#created_at').val(getNextDay())
+            })
+        })
+
+        $('#created_at').val(getToday() +" "+ time)
+
+        $(function(){
+            $(breakfastBtn).click(function(){
+                mealForm.action = "{{route('dairy.breakfast.store')}}"
+            });
+        });
+        $(function(){
+            $(lunchBtn).click(function(){
+                mealForm.action = "{{route('dairy.lunch.store')}}"
+            });
+        });
+
+        $(function(){
+            $(dinnerBtn).click(function(){
+                mealForm.action = "{{route('dairy.dinner.store')}}"
             });
         });
     </script>
