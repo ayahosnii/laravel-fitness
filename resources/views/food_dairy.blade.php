@@ -63,7 +63,6 @@
     .dropdown-content a:hover {background-color: #f1f1f1}
 
     /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-    .show {display:block;}
 
     #form-food-div{
         background-color: #f6f6f6;
@@ -81,6 +80,9 @@
     @stop
 @section('content')
 <div class="container">
+    @include('alerts.success')
+    @include('alerts.errors')
+    {{$date}}
     {{--
             * table of units g=1 kg=1/1000 oz = .....
             * form of breakfast>>etc have relationship with food
@@ -94,6 +96,7 @@
             <a type="button" class="btn btn-pink" id="tomorrow" href="#">Tomorrow</a>
         </div>
 
+{{--
         <form action="{{route('dairy.store')}}" method="post" style="all: unset !important; ">
             @csrf
             <div class="row justify-content-center">
@@ -123,34 +126,79 @@
                 <button type="submit" class="btn btn-pink">Add</button>
             </div>
         </form>
-        <table class="table" id="tod_tr" style="display: table">
+--}}
+        <table class="table" id="tod_tr_1" style="display: table">
             <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">
                     BreakFast
-                    <a type="button" class="btn btn-pink" id="breakfastBtn" href="#" onclick="showFoodList()">+</a>
+                    <a type="button" class="btn btn-pink" id="breakfastBtn" href="#">+</a>
                 </th>
                 <th scope="col">
-                    Lunch
-                    <a type="button" class="btn btn-pink" id="lunchBtn" href="#" onclick="showFoodList()">+</a>
+                    Serving Size
                 </th>
                 <th scope="col">
-                    Dinner
-                    <a type="button" class="btn btn-pink" id="dinnerBtn" href="#" onclick="showFoodList()">+</a>
+                    Calories
                 </th>
             </tr>
             </thead>
             <tbody>
-            @foreach($dairies as $key=>$dairy)
-
+            @foreach($breakfasts as $breakfast)
                 <tr>
-                <th scope="row">{{$key}}</th>
-                <td>{{$dairy->foods->Food_Name}}</td>
-                <td>{{$dairy->lunchs->Food_Name}}</td>
-                <td>{{$dairy->dinners->Food_Name}}</td>
-            </tr>
+                    <td>{{$breakfast->food->Food_Name}}({{$breakfast->food->calories}} cal/100g)</td>
+                    <td>{{$breakfast->serving_size}}{{$breakfast->unit->abbr}} x {{$breakfast->servings_per_container}}</td>
+                    <td>{{$breakfast->serving_size * $breakfast->servings_per_container/100 * $breakfast->food->calories}} kcal</td>
+                </tr>
             @endforeach
+
+
+            </tbody>
+        </table>
+        <table class="table" id="tod_tr_2" style="display: table">
+            <thead>
+            <tr>
+                <th scope="col">
+                    Lunch
+                    <a type="button" class="btn btn-pink" id="lunchBtn" href="#">+</a>
+                </th>
+                <th scope="col">
+                    Serving Size
+                </th>
+                <th scope="col">
+                    Calories
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($lunches as $lunch)
+                <tr>
+                    <td>{{$lunch->food->Food_Name}}({{$lunch->food->calories}} cal/100g)</td>
+                    <td>{{$lunch->serving_size}}{{$lunch->unit->abbr}} x {{$lunch->servings_per_container}}</td>
+                    <td>{{$lunch->serving_size * $lunch->servings_per_container/100 * $lunch->food->calories}} kcal</td>
+                </tr>
+            @endforeach
+
+
+            </tbody>
+        </table>
+        <table class="table" id="tod_tr_3" style="display: table">
+            <thead>
+            <tr>
+                <th scope="col">
+                    Dinner
+                    <a type="button" class="btn btn-pink" id="dinnerBtn" href="#">+</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($dinners as $dinner)
+                <tr>
+                    <td>{{$dinner->food->Food_Name}}({{$dinner->food->calories}} cal/100g)</td>
+                    <td>{{$dinner->serving_size}}{{$dinner->unit->abbr}} x {{$dinner->servings_per_container}}</td>
+                    <td>{{$dinner->serving_size * $dinner->servings_per_container/100 * $dinner->food->calories}} kcal</td>
+                </tr>
+            @endforeach
+
 
             </tbody>
         </table>
@@ -182,7 +230,7 @@
 
     <div class="dropdown">
         <input type="text" placeholder="Search.." id="inputSearch" style="display: none" onkeyup="searchFunction()">
-        <div id="myFoodList" class="dropdown-content">
+        <div id="myFoodList" class="dropdown-content" style="display: none">
             @foreach($foods as $food)
             <a href="#" id="foody" data-id="{{$food->id}}"  onclick="myfun(this)">{{$food->Food_Name}}</a>
             @endforeach
@@ -195,22 +243,31 @@
         <p id="foodname"></p>
             <div class="row">
                 <div class="col-md-12">
-                    <input name="food_id" id="food_id" style="display: none" readonly>
+                    <input name="food_id" id="food_id" hidden readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="">Serving Size</label>
-                    <input>
+                    <input type="number" name="serving_size">
+                </div>
+                <div class="col-md-6" style="margin-top: 27px">
+                    <label for="">Unit</label>
+                    <select id="units" name="unit_id">
+                        @foreach($units as $unit)
+                            <option value="{{$unit->id}}">{{$unit->abbr}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-6">
                     <label for="">Servings per container</label>
-                    <input>
+                    <input name="servings_per_container" type="number">
                 </div>
+
                 <div class="col-md-6">
-                    <label for="">Created_at</label>
-                    <input id="created_at" >
+                    <label for="">Date</label>
+                    <input id="created_at" name="created_at">
                 </div>
             </div>
-            <a type="button" class="btn btn-pink my-3" id="add-f" href="#">Add breakfast</a>
+            <button type="submit" class="btn btn-pink my-3" id="add-f" href="#"></button>
         </form>
     </div>
 @endsection
@@ -223,10 +280,13 @@
         const breakfastBtn = document.getElementById('breakfastBtn');
         const lunchBtn = document.getElementById('lunchBtn');
         const dinnerBtn = document.getElementById('dinnerBtn');
+        const addF = document.getElementById('add-f');
 
         const food_list = document.getElementById("myFoodList")
         const yes_tr = document.getElementById('yes_tr');
-        const tod_tr = document.getElementById('tod_tr');
+        const tod_tr_1 = document.getElementById('tod_tr_1');
+        const tod_tr_2 = document.getElementById('tod_tr_2');
+        const tod_tr_3 = document.getElementById('tod_tr_3');
 
         var a = document.getElementsByTagName("a")
         var inpSearch = document.getElementById("inputSearch");
@@ -247,18 +307,17 @@
 
         today.addEventListener('click', () => {
 
-            if (tod_tr.style.display === 'none') {
+            if (tod_tr_1.style.display === 'none' && tod_tr_2.style.display === 'none' && tod_tr_3.style.display === 'none') {
                 // 👇️ this SHOWS the form
-                tod_tr.style.display = 'table';
+                tod_tr_1.style.display = 'table';
+                tod_tr_2.style.display = 'table';
+                tod_tr_3.style.display = 'table';
+
                 yes_tr.style.display = 'none';
             }
         });
 
-        function showFoodList() {
-            food_list.classList.toggle("show");
-            inpSearch.style.display = 'block';
-            foodFormDiv.style.display = 'block';
-        }
+
 
         function searchFunction() {
             var search_input, serFoodUpCase, ul, li, a_food, i;
@@ -347,7 +406,10 @@
                 if (yes_tr.style.display === 'none') {
                     // 👇️ this SHOWS the form
                     yes_tr.style.display = 'table'
-                    tod_tr.style.display = 'none';
+                    tod_tr_1.style.display = 'none';
+                    tod_tr_2.style.display = 'none';
+                    tod_tr_3.style.display = 'none';
+
                 }
             })
         })
@@ -370,17 +432,29 @@
         $(function(){
             $(breakfastBtn).click(function(){
                 mealForm.action = "{{route('dairy.breakfast.store')}}"
+                food_list.style.display = 'block';;
+                inpSearch.style.display = 'block';
+                foodFormDiv.style.display = 'block';
+                addF.innerHTML = 'Add Breakfast'
             });
         });
         $(function(){
             $(lunchBtn).click(function(){
                 mealForm.action = "{{route('dairy.lunch.store')}}"
+                food_list.style.display = 'block';
+                inpSearch.style.display = 'block';
+                foodFormDiv.style.display = 'block';
+                addF.innerHTML = 'Add Lunch'
             });
         });
 
         $(function(){
             $(dinnerBtn).click(function(){
                 mealForm.action = "{{route('dairy.dinner.store')}}"
+                food_list.style.display = 'block';
+                inpSearch.style.display = 'block';
+                foodFormDiv.style.display = 'block';
+                addF.innerHTML = 'Add Dinner'
             });
         });
     </script>

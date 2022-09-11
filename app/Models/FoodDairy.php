@@ -24,4 +24,5 @@ class FoodDairy extends Model
     {
         return $this->belongsTo(AddFood::class, 'dinner');
     }
+
 }

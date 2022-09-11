@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\AddFood;
+use App\Models\Breakfast;
+use App\Models\Dinner;
 use App\Models\FoodDairy;
+use App\Models\Lunch;
+use App\Models\Unit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FoodDairyController extends Controller
 {
-    public $breakfast;
-    public $lunch;
-    public $dinner;
-    public $user_id;
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +24,14 @@ class FoodDairyController extends Controller
         $foods = AddFood::select()->get();
         $dairies = FoodDairy::whereDate('created_at', Carbon::today())->get();
         $dairies_yes = FoodDairy::whereDate('created_at', Carbon::yesterday())->get();
-        return view('food_dairy', compact('foods', 'dairies', 'dairies_yes'));
+        $units = Unit::select()->get();
+
+        $breakfasts = Breakfast::whereDate('created_at', Carbon::today())->get();
+        $lunches = Lunch::whereDate('created_at', Carbon::today())->get();
+        $dinners = Dinner::whereDate('created_at', Carbon::today())->get();
+
+        $date = Carbon::today();
+        return view('food_dairy', compact('foods', 'dairies', 'dairies_yes', 'units', 'breakfasts', 'lunches', 'dinners', 'date'));
     }
 
     /**
@@ -41,22 +48,55 @@ class FoodDairyController extends Controller
         return view();
     }
 
-    public function breakfastStore()
+    public function breakfastStore(Request $request)
     {
-        return view();
-    }
-    public function lunch()
-    {
-        return view();
+        try {
+
+            Breakfast::create([
+                'food_id' => $request->food_id,
+                'serving_size' => $request->serving_size,
+                'unit_id' => $request->unit_id,
+                'servings_per_container' => $request->servings_per_container,
+                'created_at' => $request->created_at
+            ]);
+            return redirect()->route('dairy')->with(['success' => 'Breakfast\'s has added successfully']);
+        }catch (\Exception $exception){
+            return $exception;
+        }
     }
 
-    public function lunchStore()
+
+    public function lunchStore(Request $request)
     {
-        return view();
+        try {
+
+            Lunch::create([
+                'food_id' => $request->food_id,
+                'serving_size' => $request->serving_size,
+                'unit_id' => $request->unit_id,
+                'servings_per_container' => $request->servings_per_container,
+                'created_at' => $request->created_at
+            ]);
+            return redirect()->route('dairy')->with(['success' => 'Lunch\'s food has added successfully']);
+        }catch (\Exception $exception){
+            return $exception;
+        }
     }
-    public function dinnerStore()
+    public function dinnerStore(Request $request)
     {
-        return view();
+        try {
+
+            Dinner::create([
+                'food_id' => $request->food_id,
+                'serving_size' => $request->serving_size,
+                'unit_id' => $request->unit_id,
+                'servings_per_container' => $request->servings_per_container,
+                'created_at' => $request->created_at
+            ]);
+            return redirect()->route('dairy')->with(['success' => 'Dinners\'s food has added successfully']);
+        }catch (\Exception $exception){
+            return $exception;
+        }
     }
 
 
