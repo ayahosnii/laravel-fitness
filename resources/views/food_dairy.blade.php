@@ -131,7 +131,9 @@
             <thead>
             <tr>
                 <th scope="col">
-                    BreakFast
+
+                    BreakFast ({{\App\Helpers\Meals::getBrkfastCalories()}} cal)
+
                     <a type="button" class="btn btn-pink" id="breakfastBtn" href="#">+</a>
                 </th>
                 <th scope="col">
@@ -147,7 +149,7 @@
                 <tr>
                     <td>{{$breakfast->food->Food_Name}}({{$breakfast->food->calories}} cal/100g)</td>
                     <td>{{$breakfast->serving_size}}{{$breakfast->unit->abbr}} x {{$breakfast->servings_per_container}}</td>
-                    <td>{{$breakfast->serving_size * $breakfast->servings_per_container/100 * $breakfast->food->calories}} kcal</td>
+                    <td>{{$breakfast->total_calories}} kcal</td>
                 </tr>
             @endforeach
 
@@ -158,7 +160,7 @@
             <thead>
             <tr>
                 <th scope="col">
-                    Lunch
+                    Lunch ({{\App\Helpers\Meals::getLunchCalories()}} cal)
                     <a type="button" class="btn btn-pink" id="lunchBtn" href="#">+</a>
                 </th>
                 <th scope="col">
@@ -174,7 +176,7 @@
                 <tr>
                     <td>{{$lunch->food->Food_Name}}({{$lunch->food->calories}} cal/100g)</td>
                     <td>{{$lunch->serving_size}}{{$lunch->unit->abbr}} x {{$lunch->servings_per_container}}</td>
-                    <td>{{$lunch->serving_size * $lunch->servings_per_container/100 * $lunch->food->calories}} kcal</td>
+                    <td>{{$lunch->total_calories}} kcal</td>
                 </tr>
             @endforeach
 
@@ -185,8 +187,14 @@
             <thead>
             <tr>
                 <th scope="col">
-                    Dinner
+                    Dinner ({{\App\Helpers\Meals::getDinnerCalories()}} cal)
                     <a type="button" class="btn btn-pink" id="dinnerBtn" href="#">+</a>
+                </th>
+                <th scope="col">
+                    Serving Size
+                </th>
+                <th scope="col">
+                    Calories
                 </th>
             </tr>
             </thead>
@@ -195,7 +203,8 @@
                 <tr>
                     <td>{{$dinner->food->Food_Name}}({{$dinner->food->calories}} cal/100g)</td>
                     <td>{{$dinner->serving_size}}{{$dinner->unit->abbr}} x {{$dinner->servings_per_container}}</td>
-                    <td>{{$dinner->serving_size * $dinner->servings_per_container/100 * $dinner->food->calories}} kcal</td>
+                    <td>{{$dinner->total_calories}} kcal</td>
+{{--                    <td>{{$dinner->serving_size * $dinner->servings_per_container/100 * $dinner->food->calories}} kcal</td>--}}
                 </tr>
             @endforeach
 

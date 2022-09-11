@@ -27,11 +27,16 @@ class FoodDairyController extends Controller
         $units = Unit::select()->get();
 
         $breakfasts = Breakfast::whereDate('created_at', Carbon::today())->get();
+        $br_total_cals = Breakfast::whereDate('created_at', Carbon::today())->where('user_id', Auth::user()->id)->sum('total_calories');
+
         $lunches = Lunch::whereDate('created_at', Carbon::today())->get();
         $dinners = Dinner::whereDate('created_at', Carbon::today())->get();
 
         $date = Carbon::today();
-        return view('food_dairy', compact('foods', 'dairies', 'dairies_yes', 'units', 'breakfasts', 'lunches', 'dinners', 'date'));
+        return view('food_dairy',
+            compact('foods', 'dairies', 'dairies_yes',
+                'units', 'breakfasts', 'lunches', 'dinners',
+                'date', 'br_total_cals'));
     }
 
     /**
@@ -57,7 +62,9 @@ class FoodDairyController extends Controller
                 'serving_size' => $request->serving_size,
                 'unit_id' => $request->unit_id,
                 'servings_per_container' => $request->servings_per_container,
-                'created_at' => $request->created_at
+                'created_at' => $request->created_at,
+                'user_id' => Auth::user()->id,
+                'total_calories' => $request->serving_size/100 * AddFood::where('id', $request->food_id)->first()->calories
             ]);
             return redirect()->route('dairy')->with(['success' => 'Breakfast\'s has added successfully']);
         }catch (\Exception $exception){
@@ -75,7 +82,9 @@ class FoodDairyController extends Controller
                 'serving_size' => $request->serving_size,
                 'unit_id' => $request->unit_id,
                 'servings_per_container' => $request->servings_per_container,
-                'created_at' => $request->created_at
+                'created_at' => $request->created_at,
+                'user_id' => Auth::user()->id,
+                'total_calories' => $request->serving_size*$request->servings_per_container/100 * AddFood::where('id', $request->food_id)->first()->calories
             ]);
             return redirect()->route('dairy')->with(['success' => 'Lunch\'s food has added successfully']);
         }catch (\Exception $exception){
@@ -91,7 +100,9 @@ class FoodDairyController extends Controller
                 'serving_size' => $request->serving_size,
                 'unit_id' => $request->unit_id,
                 'servings_per_container' => $request->servings_per_container,
-                'created_at' => $request->created_at
+                'created_at' => $request->created_at,
+                'user_id' => Auth::user()->id,
+                'total_calories' => $request->serving_size/100 * AddFood::where('id', $request->food_id)->first()->calories
             ]);
             return redirect()->route('dairy')->with(['success' => 'Dinners\'s food has added successfully']);
         }catch (\Exception $exception){
