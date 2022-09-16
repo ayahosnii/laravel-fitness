@@ -23,8 +23,6 @@ class UnitTableSeeder extends Seeder
             'value'=>1,
         ]);
 
-        DB::table('units')->delete();
-
         Unit::create([
             'id' => 2,
             'unit_name'=>'Kilogram',
