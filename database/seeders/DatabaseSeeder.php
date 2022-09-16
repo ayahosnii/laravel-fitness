@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\FoodTranslation;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(CountryTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(FoodTableSeeder::class);
+        $this->call(FoodTranslationTableSeeder::class);
         $this->call(UnitTableSeeder::class);
     }
 }
