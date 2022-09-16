@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('food', function (Blueprint $table) {
             $table->id();
-            $table->string('food-name');
-            $table->float('serving-Size');
-            $table->float('servings-per-container');
+            $table->string('Food_Name');
+            $table->float('serving_size');
+            $table->float('servings_per_container');
             $table->float('calories');
-            $table->float('total-fat');
+            $table->float('total_fat');
             $table->float('saturated');
             $table->float('polyunsaturated');
             $table->float('monounsaturated');
@@ -27,16 +27,16 @@ return new class extends Migration
             $table->float('cholesterol');
             $table->float('sodium');
             $table->float('potassium');
-            $table->float('total-carbs');
-            $table->float('dietary Fiber');
+            $table->float('total_carbs');
+            $table->float('dietary_fiber');
             $table->float('sugars');
             $table->float('protein');
-            $table->float('vitamin-a');
-            $table->float('vitamin-c');
+            $table->float('vitamin_a');
+            $table->float('vitamin_c');
             $table->float('calcium');
             $table->float('iron');
-            $table->enum('add-food', ['0','1']);
-            $table->enum('for-member', ['0','1']);
+            $table->enum('add_food', ['0','1'])->default('0');
+            $table->enum('for_member', ['0','1'])->default('1');
             $table->timestamps();
         });
     }
