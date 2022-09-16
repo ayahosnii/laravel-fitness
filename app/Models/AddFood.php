@@ -9,8 +9,8 @@ use Spatie\Translatable\HasTranslations;
 class AddFood extends Model
 {
     use HasFactory;
-    //use HasTranslations;
-    //public $translatable = ['Food_Name'];
+    use HasTranslations;
+    public $translatable = ['Food_Name'];
     protected $table = 'food';
     protected $guarded=[];
 }
