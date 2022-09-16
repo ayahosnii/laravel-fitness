@@ -13,4 +13,9 @@ class AddFood extends Model
     public $translatable = ['Food_Name'];
     protected $table = 'food';
     protected $guarded=[];
+
+    public function foods()
+    {
+        return $this->hasMany(FoodTranslation::class);
+    }
 }
