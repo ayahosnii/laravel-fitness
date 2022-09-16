@@ -28,7 +28,7 @@ class FoodTableSeeder extends Seeder
             'total_carbs'=>23,
             'protein'=>1.1,
             'add_food'=>0,
-            'user_id '=>1,
+            'user_id'=>1,
         ]);
 
         AddFood::create([
@@ -41,7 +41,7 @@ class FoodTableSeeder extends Seeder
             'total_carbs'=>28,
             'protein'=>2.7,
             'add_food'=>0,
-            'user_id '=>1,
+            'user_id'=>1,
         ]);
 
         AddFood::create([
@@ -54,7 +54,7 @@ class FoodTableSeeder extends Seeder
             'total_carbs'=>3.6,
             'protein'=>10,
             'add_food'=>0,
-            'user_id '=>1,
+            'user_id'=>1,
         ]);
 
     }
