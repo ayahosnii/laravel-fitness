@@ -1,6 +1,7 @@
 <?php
 namespace Database\Seeders;
 
+use App\Models\AddFood;
 use App\Models\Food;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,7 @@ class FoodTableSeeder extends Seeder
     {
         DB::table('food')->delete();
 
-        Food::create([
+        AddFood::create([
             'id' => 1,
             'Food_Name'=>'Banana',
             'serving_size'=>100,
@@ -29,7 +30,7 @@ class FoodTableSeeder extends Seeder
             'user_id '=>1,
         ]);
 
-        Food::create([
+        AddFood::create([
             'id' => 2,
             'Food_Name'=>'rice',
             'serving_size'=>100,
@@ -42,7 +43,7 @@ class FoodTableSeeder extends Seeder
             'user_id '=>1,
         ]);
 
-        Food::create([
+        AddFood::create([
             'id' => 3,
             'Food_Name'=>'Yogurt',
             'serving_size'=>100,
