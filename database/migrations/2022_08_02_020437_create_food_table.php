@@ -37,6 +37,8 @@ class CreateFoodTable extends Migration
         $table->float('iron');
         $table->enum('add_food', ['0','1'])->default('0');
         $table->enum('for_member', ['0','1'])->default('1');
+        $table->bigInteger('user_id')->unsigned()->nullable();
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         $table->timestamps();
         });
     }
