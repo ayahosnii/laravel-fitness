@@ -13,7 +13,7 @@ class AddfoodComponent extends Component
     public $currentStep = 1,
 
         // Food_Info
-        $food_name, $serving_size, $servings_per_container, $calories,
+        $food_name, $food_name_ar, $serving_size, $servings_per_container, $calories,
         $fat, $carbs, $protein,
 
         // Main Food Info
@@ -68,7 +68,7 @@ class AddfoodComponent extends Component
 
             $My_Food = new AddFood();
             // Food_Info
-            $My_Food->Food_Name = $this->food_name;
+            $My_Food->Food_Name = ['en' => $this->food_name, 'ar'=> $this->food_name_ar];
             $My_Food->serving_size = $this->serving_size;
             $My_Food->servings_per_container = $this->servings_per_container;
             $My_Food->calories = $this->calories;
@@ -105,6 +105,7 @@ class AddfoodComponent extends Component
  public function clearFoodForm()
  {
       $this->food_name = '';
+      $this->food_name_ar = '';
        $this->serving_size = '';
        $this->servings_per_container = '';
        $this->calories = '';

@@ -5,12 +5,17 @@
             <div class="col-md-12">
                 <br>
 <div class="row justify-content-center justify-content-sm-between" style="margin: 40px 500px">
-    <div class="col-md-8">
-        <label for="food-name">Food Name <span class="text-danger fs-5">*</span></label>
+    <div class="col-md-4">
+        <label for="food-name">Food Name (en)<span class="text-danger fs-5">*</span></label>
         <input wire:model="food_name" type="text">
         @error('food_name')
         <div class="alert alert-pink m-3">{{ $message }}</div>
         @enderror
+    </div>
+    <div class="col-md-5">
+        <label for="food_name_ar">Food Name (ar)</label>
+        <input wire:model="food_name_ar" type="text">
+
     </div>
 </div>
 <div class="row justify-content-center justify-content-sm-between" style="margin: 40px 500px">
