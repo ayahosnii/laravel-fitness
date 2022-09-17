@@ -27,7 +27,7 @@ class UnitTableSeeder extends Seeder
             'id' => 2,
             'unit_name'=>'Kilogram',
             'abbr'=>'kg',
-            'value'=>0.001,
+            'value'=>1000,
         ]);
     }
 }
