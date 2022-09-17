@@ -20,7 +20,7 @@ class FoodTableSeeder extends Seeder
 
         AddFood::create([
             'id' => 1,
-            'Food_Name'=>'Banana',
+            'Food_Name' => ['en' => 'Banana', 'ar' => 'موزة'],
             'serving_size'=>100,
             'servings_per_container'=>1,
             'calories'=>88,
@@ -33,7 +33,7 @@ class FoodTableSeeder extends Seeder
 
         AddFood::create([
             'id' => 2,
-            'Food_Name'=>'rice',
+            'Food_Name'=>['en' => 'Rice', 'ar' => 'أرز'],
             'serving_size'=>100,
             'servings_per_container'=>1,
             'calories'=>130,
@@ -46,7 +46,7 @@ class FoodTableSeeder extends Seeder
 
         AddFood::create([
             'id' => 3,
-            'Food_Name'=>'Yogurt',
+            'Food_Name'=> ['en' => 'Yogurt', 'ar' => 'زبادي'],
             'serving_size'=>100,
             'servings_per_container'=>1,
             'calories'=>58,
