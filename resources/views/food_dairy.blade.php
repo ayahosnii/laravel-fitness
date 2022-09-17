@@ -212,28 +212,91 @@
             </tbody>
         </table>
 
-        <table class="table" id="yes_tr" style="display: none">
+        <table class="table" id="yes_tr_1" style="display: none">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">BreakFast</th>
-                <th scope="col">Lunch</th>
-                <th scope="col">Dinner</th>
+                <th scope="col">
+
+                    BreakFast ({{\App\Helpers\Meals::getYesBrkfastCalories()}} cal)
+
+                    <a type="button" class="btn btn-pink" id="breakfastBtn" href="#">+</a>
+                </th>
+                <th scope="col">
+                    Serving Size
+                </th>
+                <th scope="col">
+                    Calories
+                </th>
             </tr>
             </thead>
             <tbody>
-            @foreach($dairies_yes as $key=>$dairy)
-
+            @foreach($yes_breakfasts as $breakfast)
                 <tr>
-                    <th scope="row">{{$key}}</th>
-                    <td>{{$dairy->foods->Food_Name}}</td>
-                    <td>{{$dairy->lunchs->Food_Name}}</td>
-                    <td>{{$dairy->dinners->Food_Name}}</td>
-            </tr>
+                    <td>{{$breakfast->food->Food_Name}}({{$breakfast->food->calories}} cal/100g)</td>
+                    <td>{{$breakfast->serving_size}}{{$breakfast->unit->abbr}} x {{$breakfast->servings_per_container}}</td>
+                    <td>{{$breakfast->total_calories}} kcal</td>
+                </tr>
             @endforeach
+
 
             </tbody>
         </table>
+        <table class="table" id="yes_tr_2" style="display: none">
+            <thead>
+            <tr>
+                <th scope="col">
+                    Lunch ({{\App\Helpers\Meals::getYesLunchCalories()}} cal)
+                    <a type="button" class="btn btn-pink" id="lunchBtn" href="#">+</a>
+                </th>
+                <th scope="col">
+                    Serving Size
+                </th>
+                <th scope="col">
+                    Calories
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($yes_lunches as $lunch)
+                <tr>
+                    <td>{{$lunch->food->Food_Name}}({{$lunch->food->calories}} cal/100g)</td>
+                    <td>{{$lunch->serving_size}}{{$lunch->unit->abbr}} x {{$lunch->servings_per_container}}</td>
+                    <td>{{$lunch->total_calories}} kcal</td>
+                </tr>
+            @endforeach
+
+
+            </tbody>
+        </table>
+        <table class="table" id="yes_tr_3" style="display: none">
+            <thead>
+            <tr>
+                <th scope="col">
+                    Dinner ({{\App\Helpers\Meals::getYesDinnerCalories()}} cal)
+                    <a type="button" class="btn btn-pink" id="dinnerBtn" href="#">+</a>
+                </th>
+                <th scope="col">
+                    Serving Size
+                </th>
+                <th scope="col">
+                    Calories
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($yes_dinners as $dinner)
+                <tr>
+                    <td>{{$dinner->food->Food_Name}}({{$dinner->food->calories}} cal/100g)</td>
+                    <td>{{$dinner->serving_size}}{{$dinner->unit->abbr}} x {{$dinner->servings_per_container}}</td>
+                    <td>{{$dinner->total_calories}} kcal</td>
+{{--                    <td>{{$dinner->serving_size * $dinner->servings_per_container/100 * $dinner->food->calories}} kcal</td>--}}
+                </tr>
+            @endforeach
+
+
+            </tbody>
+        </table>
+
 
     </div>
 
@@ -292,10 +355,14 @@
         const addF = document.getElementById('add-f');
 
         const food_list = document.getElementById("myFoodList")
-        const yes_tr = document.getElementById('yes_tr');
+
         const tod_tr_1 = document.getElementById('tod_tr_1');
         const tod_tr_2 = document.getElementById('tod_tr_2');
         const tod_tr_3 = document.getElementById('tod_tr_3');
+
+        const yes_tr_1 = document.getElementById('yes_tr_1');
+        const yes_tr_2 = document.getElementById('yes_tr_2');
+        const yes_tr_3 = document.getElementById('yes_tr_3');
 
         var a = document.getElementsByTagName("a")
         var inpSearch = document.getElementById("inputSearch");
@@ -322,7 +389,10 @@
                 tod_tr_2.style.display = 'table';
                 tod_tr_3.style.display = 'table';
 
-                yes_tr.style.display = 'none';
+                yes_tr_1.style.display = 'none';
+                yes_tr_2.style.display = 'none';
+                yes_tr_3.style.display = 'none';
+
             }
         });
 
@@ -412,9 +482,12 @@
             $(yesterday).click(function (){
                 $('#created_at').val(getPreviousDay())
 
-                if (yes_tr.style.display === 'none') {
+                if (yes_tr_1.style.display === 'none' && yes_tr_2.style.display === 'none' && yes_tr_3.style.display === 'none') {
                     // 👇️ this SHOWS the form
-                    yes_tr.style.display = 'table'
+                    yes_tr_1.style.display = 'table'
+                    yes_tr_2.style.display = 'table'
+                    yes_tr_3.style.display = 'table'
+
                     tod_tr_1.style.display = 'none';
                     tod_tr_2.style.display = 'none';
                     tod_tr_3.style.display = 'none';

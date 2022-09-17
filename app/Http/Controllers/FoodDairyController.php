@@ -21,22 +21,30 @@ class FoodDairyController extends Controller
      */
     public function index()
     {
-        $foods = AddFood::select()->get();
+        $foods = AddFood::select()->orderBy('Food_Name', 'asc')->get();
         $dairies = FoodDairy::whereDate('created_at', Carbon::today())->get();
         $dairies_yes = FoodDairy::whereDate('created_at', Carbon::yesterday())->get();
         $units = Unit::select()->get();
 
-        $breakfasts = Breakfast::whereDate('created_at', Carbon::today())->get();
+        $breakfasts = Breakfast::whereDate('created_at', Carbon::today())->orderBy('created_at', 'desc')->get();
         $br_total_cals = Breakfast::whereDate('created_at', Carbon::today())->where('user_id', Auth::user()->id)->sum('total_calories');
 
-        $lunches = Lunch::whereDate('created_at', Carbon::today())->get();
-        $dinners = Dinner::whereDate('created_at', Carbon::today())->get();
+        $lunches = Lunch::whereDate('created_at', Carbon::today())->orderBy('created_at', 'desc')->get();
+        $dinners = Dinner::whereDate('created_at', Carbon::today())->orderBy('created_at', 'desc')->get();
+
+
+
+        $yes_breakfasts = Breakfast::whereDate('created_at', Carbon::yesterday())->orderBy('created_at', 'desc')->get();
+        $yes_br_total_cals = Breakfast::whereDate('created_at', Carbon::yesterday())->where('user_id', Auth::user()->id)->sum('total_calories');
+
+        $yes_lunches = Lunch::whereDate('created_at', Carbon::yesterday())->orderBy('created_at', 'desc')->get();
+        $yes_dinners = Dinner::whereDate('created_at', Carbon::yesterday())->orderBy('created_at', 'desc')->get();
 
         $date = Carbon::today();
         return view('food_dairy',
             compact('foods', 'dairies', 'dairies_yes',
                 'units', 'breakfasts', 'lunches', 'dinners',
-                'date', 'br_total_cals'));
+                'date', 'br_total_cals', 'yes_breakfasts', 'yes_br_total_cals', 'yes_lunches', 'yes_dinners'));
     }
 
     /**

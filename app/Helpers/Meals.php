@@ -20,5 +20,20 @@ class Meals
     {
         return \App\Models\Dinner::whereDate('created_at', Carbon::today())->where('user_id', Auth::user()->id)->sum('total_calories');
     }
+
+    public static function getYesBrkfastCalories()
+    {
+        return \App\Models\Breakfast::whereDate('created_at', Carbon::yesterday())->where('user_id', Auth::user()->id)->sum('total_calories');
+    }
+
+    public static function getYesLunchCalories()
+    {
+        return \App\Models\Lunch::whereDate('created_at', Carbon::yesterday())->where('user_id', Auth::user()->id)->sum('total_calories');
+    }
+
+    public static function getYesDinnerCalories()
+    {
+        return \App\Models\Dinner::whereDate('created_at', Carbon::yesterday())->where('user_id', Auth::user()->id)->sum('total_calories');
+    }
 }
 
