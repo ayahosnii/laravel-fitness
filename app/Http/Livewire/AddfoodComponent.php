@@ -12,6 +12,8 @@ class AddfoodComponent extends Component
     public $catchError;
     public $currentStep = 1,
 
+
+
         // Food_Info
         $food_name, $food_name_ar, $serving_size, $servings_per_container, $calories,
         $fat, $carbs, $protein,
@@ -20,6 +22,8 @@ class AddfoodComponent extends Component
         $saturated, $polyunsaturated, $monounsaturated, $trans, $cholesterol,
         $sugars, $sodium, $potassium, $dietary_fiber, $vitamin_a, $vitamin_c,
         $calcium, $iron, $for_member;
+
+    public $products = [];
 
 
     public function updated($propertyName)
@@ -64,11 +68,12 @@ class AddfoodComponent extends Component
 
     public function submitFood()
     {
+        $translations = ['en' => $this->food_name, 'ar' => $this->food_name_ar];
         try {
 
             $My_Food = new AddFood();
             // Food_Info
-            $My_Food->Food_Name = ['en' => $this->food_name, 'ar'=> $this->food_name_ar];
+            $My_Food->Food_Name = $translations;
             $My_Food->serving_size = $this->serving_size;
             $My_Food->servings_per_container = $this->servings_per_container;
             $My_Food->calories = $this->calories;
