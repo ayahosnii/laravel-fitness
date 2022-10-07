@@ -1,9 +1,4 @@
-.exercise-card-content { grid-area: content; }
-.exercise-card-head { grid-area: header; }
-.slide-cate-img { grid-area: cate-img; }
-.item3 { grid-area: main; }
-.item4 { grid-area: right; }
-.item5 { grid-area: footer; }
+
 
 .background{
     background: linear-gradient(#850032, #FFA69E) ;
@@ -11,9 +6,9 @@
 
 .exercise-card{
     display: grid;
-    grid-template-areas:
-    'header''header''header''header''header''content';
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
     position : relative;
     background-color: #fafafa;
     margin: 0 150px 0 150px;
@@ -21,6 +16,50 @@
     height:150vh;
     justify-content: center;
 }
+
+.cate-card-head{
+    grid-column: 1;
+    grid-row: 1;
+
+    top: 10px;
+}
+
+.cate-card-content{
+    grid-column: 2/ 4;
+    grid-row: 2 / 3;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    right: 50%;
+    left: 15%;
+
+
+}
+
+.slide-cate-img{
+    position: relative;
+    height: 200px;
+    border-radius: 15px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    max-width: 400px;
+    margin: 5px 0 10px 0;
+}
+.slide-cate-img p{
+    top: 20px;
+    left: 16px;
+    font-size: 100%;
+    color: #fff;
+    height: auto;
+}
+
+
+.cate-card-head{
+    position: absolute;
+    top: 10px;
+    left:10%
+}
+
 .exercise-card-head{
     position: absolute;
     top: 10px;
@@ -34,23 +73,7 @@
     justify-content: center;
 }
 
-.slide-cate-img{
-    position: relative;
-    width: 500px;
-    height: 300px;
-    border-radius: 15px;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    margin: 5px 0 0 0;
-}
-.slide-cate-img p{
-    position: absolute;
-    top: 20px;
-    left: 16px;
-    font-size: 30px;
-    color: #fff;
-    height: auto;
-}
+
 
 
 .exercise-card-content #slider {

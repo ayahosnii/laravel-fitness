@@ -30,31 +30,7 @@
                 <a class="navbar-brand m-0 p-0" href="{{ url('/') }}">
                     <img src="{{asset('assets/imgs/logo.png')}}">
                 </a>
-            @if (Route::has('login'))
-                @auth
-                    <a class="nav-link mx-3" href="{{ url('/home') }}">
-                        Home
-                    </a>
-                @endauth
-            @endif
-                <a class="nav-link mx-3" href="{{ url('/meals') }}">
-                    My Food
-                </a>
-                <a class="nav-link mx-3" href="{{ url('/calories-calculate') }}">
-                    Apps
-                </a>
-                <a class="nav-link mx-3" href="{{route('exercises')}}">
-                    Exercies
-                </a>
-                <a class="nav-link mx-3" href="#">
-                    Gym
-                </a>
-                <a class="nav-link mx-3" href="#">
-                    Store
-                </a>
-                <a class="nav-link mx-3" href="#">
-                    Bloggers
-                </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -63,7 +39,31 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        @if (Route::has('login'))
+                            @auth
+                                <a class="nav-link mx-3" href="{{ url('/home') }}">
+                                    Home
+                                </a>
+                            @endauth
+                        @endif
+                        <a class="nav-link mx-3" href="{{ url('/meals') }}">
+                            My Food
+                        </a>
+                        <a class="nav-link mx-3" href="{{ url('/calories-calculate') }}">
+                            Apps
+                        </a>
+                        <a class="nav-link mx-3" href="{{route('exercises')}}">
+                            Exercies
+                        </a>
+                        <a class="nav-link mx-3" href="#">
+                            Gym
+                        </a>
+                        <a class="nav-link mx-3" href="#">
+                            Store
+                        </a>
+                        <a class="nav-link mx-3" href="#">
+                            Bloggers
+                        </a>
                     </ul>
 
 

@@ -8,11 +8,11 @@
 @section('content')
     <body class="background">
        <div class="exercise-card">
-           <div class="exercise-card-head">
+           <div class="cate-card-head">
                <p class="ex-card-title">Workout List</p>
            </div>
 
-           <div class="exercise-card-content">
+           <div class="cate-card-content">
                <a href="">
                <div class="slide-cate-img" style="background-image: url({{asset('assets/imgs/Exercise/categories/push.jpg')}})">
                    <p>Push Exercise</p>
