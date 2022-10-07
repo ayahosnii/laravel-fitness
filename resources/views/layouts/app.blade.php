@@ -15,7 +15,8 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/wizard.css') }}" rel="stylesheet">
-{{--    @if(App::getLocale() == 'en')--}}
+
+    {{--    @if(App::getLocale() == 'en')--}}
     <link href="{{ asset('assets/bootstrap/css/bootstrap.css') }}"  rel="stylesheet">
    {{-- @elseif(App::getLocale() == 'ar')
     <link href="{{ asset('assets/bootstrap/css/bootstrap.rtl.css') }}"  rel="stylesheet">
@@ -42,7 +43,7 @@
                 <a class="nav-link mx-3" href="{{ url('/calories-calculate') }}">
                     Apps
                 </a>
-                <a class="nav-link mx-3" href="#">
+                <a class="nav-link mx-3" href="{{route('exercises')}}">
                     Exercies
                 </a>
                 <a class="nav-link mx-3" href="#">
@@ -132,9 +133,7 @@
                 </div>
         </nav>
 
-        <main class="py-4">
             @yield('content')
-        </main>
     </div>
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

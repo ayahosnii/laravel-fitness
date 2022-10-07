@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/calories-calculate', [App\Http\Controllers\CalorieCalculatorController::class, 'index'])->name('calorie');
     Route::post('/calories-calculate/store', [App\Http\Controllers\CalorieCalculatorController::class, 'store'])->name('calorie.store');
     Route::get('/meals', [\App\Http\Controllers\MealController::class, 'index'])->name('meals');
+    Route::get('/exercises', [\App\Http\Controllers\ExerciseController::class, 'index'])->name('exercises');
+    Route::get('/exercises/legs', [\App\Http\Controllers\ExerciseController::class, 'legs'])->name('exercises.legs');
 
 
     Route::get('/food-dairy', [\App\Http\Controllers\FoodDairyController::class, 'index'])->name('dairy');
