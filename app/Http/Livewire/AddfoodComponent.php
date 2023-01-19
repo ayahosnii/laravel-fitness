@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\AddFood;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class AddfoodComponent extends Component
 {
@@ -80,8 +81,10 @@ class AddfoodComponent extends Component
             $My_Food->total_fat = $this->fat;
             $My_Food->total_carbs = $this->carbs;
             $My_Food->protein = $this->protein;
+            $My_Food->user_id = Auth::user()->id;
 
-            $My_Food->saturated = $this->saturated ;
+
+            $My_Food->saturated = $this->saturated;
             $My_Food->polyunsaturated = $this->polyunsaturated;
             $My_Food->monounsaturated = $this->monounsaturated;
             $My_Food->trans = $this->trans;

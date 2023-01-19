@@ -27,6 +27,13 @@ setInterval(function() {
         sliderWidth = slider.offsetWidth;
     });
 
+    if (countdown === 31) {
+        circle[0].style.animation = "countdown 1s forwards";
+    }
+    circle[0].addEventListener("animationend", function(){
+        circle[0].style.animation = "none";
+        circle[0].style.strokeDashoffset = "113px";
+    });
     var prevSlide = function() {
         if(count > 1) {
             count = count - 2;
@@ -40,6 +47,8 @@ setInterval(function() {
         }
     };
 
+
+
     var nextSlide = function() {
         if(count < items) {
             slideList.style.left = "-" + count * sliderWidth + "px";
@@ -49,21 +58,15 @@ setInterval(function() {
             slideList.style.left = "0px";
             count = 1;
         }
+        if (countdown === 31) {
+            circle[0].style.strokeDashoffset = "113px";
+        }
     };
 
     next.addEventListener("click", function() {
         event.preventDefault()
         nextSlide();
         countdown = 31;
-        circle.style =`
-      @keyframes countdown {
-         from {
-        stroke-dashoffset: 0px;
-    }
-    to {
-        stroke-dashoffset: 113px;
-    }
-    `
     });
 
     prev.addEventListener("click", function() {

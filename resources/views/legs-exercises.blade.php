@@ -6,7 +6,6 @@
     <script src="{{ asset('assets/js/exercises.js') }}"></script>
 @endsection
 @section('content')
-    <body class="background">
        <div class="exercise-card">
            <div class="exercise-card-head">
                <p class="ex-card-title">Leg Exercises</p>
@@ -29,16 +28,15 @@
                            <p class="slide-title">Lunges Squad</p>
                        </li>
                    </ul>
-               </div>
-               <div id="countdown">
-                   <a id="prev" href="#">&#8810;</a>
-                   <div id="countdown-number"></div>
-                   <svg>
-                       <circle r="18" cx="20" cy="20"></circle>
-                   </svg>
-                   <a id="next" href="#">&#8811;</a>
+                   <div id="countdown" class="countdown-wrap">
+                       <a id="prev" href="#">&#8810;</a>
+                       <div id="countdown-number"></div>
+                       <svg>
+                           <circle r="18" cx="20" cy="20"></circle>
+                       </svg>
+                       <a id="next" href="#">&#8811;</a>
+                   </div>
                </div>
            </div>
        </div>
-    </body>
 @endsection
