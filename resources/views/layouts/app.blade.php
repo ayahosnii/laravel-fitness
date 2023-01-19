@@ -38,13 +38,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        @if (Route::has('login'))
-                            @auth
-                                <a class="nav-link mx-3" href="{{ url('/home') }}">
-                                    Home
-                                </a>
-                            @endauth
-                        @endif
+
                         <a class="nav-link mx-3" href="{{ url('/meals') }}">
                             My Food
                         </a>
