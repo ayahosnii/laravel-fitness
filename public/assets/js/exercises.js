@@ -1,3 +1,4 @@
+/*
 var countdownNumberEl = document.getElementById('countdown-number');
 var countdown = 30;
 
@@ -84,4 +85,63 @@ setInterval(function() {
 
 window.onload = function() {
     responsiveSlider();
+}
+*/
+var prev = document.getElementById("prev");
+var next = document.getElementById("next");
+
+let currentSlide = 0;
+let slides = document.querySelectorAll('.slider__item');
+let timerIntervalId = setInterval(updateTimerAndSlide, 1000);
+let timerDuration = slides[currentSlide].getAttribute('data-timer-duration');
+let remainingTime = timerDuration;
+
+let duration = slides[currentSlide].dataset.timerDuration;
+document.querySelector("svg circle").style.animation = `countdown ${duration}s linear forwards`;
+
+document.querySelector('.slider__prev').addEventListener('click', prevSlide);
+document.querySelector('.slider__next').addEventListener('click', nextSlide);
+
+function prevSlide() {
+    slides.forEach(slide => slide.classList.remove('active'));
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    number.innerText = `${currentSlide + 1}/${slides.length}`;
+}
+
+function nextSlide() {
+    clearInterval(timerIntervalId);
+    slides.forEach(slide => slide.classList.remove('active'));
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+    remainingTime = slides[currentSlide].getAttribute('data-timer-duration');
+}
+
+function updateTimerAndSlide() {
+    remainingTime--;
+    document.getElementById("timer").innerText = remainingTime;
+    if (remainingTime  <= 0) {
+        if (currentSlide === slides.length - 1) {
+            clearInterval(timerIntervalId);
+            setTimeout(() => {
+                window.location.href = "exercises/legs/endPage";
+            }, 3000);
+        } else {
+            clearInterval(timerIntervalId);
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+            remainingTime = slides[currentSlide].getAttribute('data-timer-duration');
+            timerIntervalId = setInterval(updateTimerAndSlide, 1000);
+        }
+    }
+}
+
+
+function redirectToEndPage() {
+    remainingTime--;
+    if (remainingTime === 0) {
+        clearInterval(timerIntervalId);
+        window.location.href = "endPage.html";
+    }
 }

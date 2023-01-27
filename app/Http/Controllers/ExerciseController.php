@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CalorieCalculator;
 use App\Models\Exercise;
+use App\Models\ExerciseCategory;
+use App\Models\ExerciseType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ExerciseController extends Controller
 {
@@ -25,22 +30,27 @@ class ExerciseController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function create()
+    public function categoryExercises()
     {
-        //
+        $e_categories = ExerciseCategory::get();
+        $e_types = ExerciseType::with('category')->get();
+        $weight = CalorieCalculator::where('user_id', Auth::user()->id)->first();
+        return view('exercise-categories', compact('e_categories', 'e_types', 'weight'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function types(Request $request, $types)
     {
-        //
+        $exerciseTypes =  ExerciseType::where('category_id', $types)->get();
+        $weight = CalorieCalculator::where('user_id', Auth::user()->id)->first();
+        return view('exercises', compact('exerciseTypes', 'weight'));
     }
 
     /**
@@ -49,9 +59,10 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function show(Exercise $exercise)
+    public function exerciseName($id)
     {
-        //
+        $exercises = Exercise::where('type_id', $id)->get();
+        return view('the-exercises', compact('exercises'));
     }
 
     /**

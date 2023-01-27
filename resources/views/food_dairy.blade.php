@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('style-css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     /* Dropdown Button */
     .dropbtn {
@@ -75,6 +74,7 @@
     #foodname{
         font-size: 30px;
         text-align: center;
+
     }
 </style>
     @stop
@@ -83,6 +83,24 @@
     @include('alerts.success')
     @include('alerts.errors')
     {{$date}}
+
+    <div id="date_controls">
+    <span class="date">
+        <a class="prev" href="#">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <time id="current-date"></time>
+        <a class="next" href="#">
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </span>
+        <input type="hidden" id="date_selector" value=""/>
+        <i class="icon-calendar" id="datepicker-trigger"></i>
+    </div>
+
+
+
+
     {{--
             * table of units g=1 kg=1/1000 oz = .....
             * form of breakfast>>etc have relationship with food
@@ -127,6 +145,7 @@
             </div>
         </form>
 --}}
+
         <table class="table" id="tod_tr_1" style="display: table">
             <thead>
             <tr>
@@ -146,14 +165,14 @@
             </thead>
             <tbody>
             @foreach($breakfasts as $breakfast)
-                <tr>
+                <tr id="bf">
                     <td>{{$breakfast->food->Food_Name}}({{$breakfast->food->calories}} cal/100g)</td>
                     <td>{{$breakfast->serving_size}}{{$breakfast->unit->abbr}} x {{$breakfast->servings_per_container}}</td>
                     <td>{{$breakfast->total_calories}} kcal</td>
                 </tr>
             @endforeach
 
-
+            <tr id="data-container"></tr>
             </tbody>
         </table>
         <table class="table" id="tod_tr_2" style="display: table">
@@ -344,6 +363,8 @@
     </div>
 @endsection
 @section('scripts')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <script>
         const yesterday = document.getElementById('yesterday');
         const today = document.getElementById('today');
@@ -369,6 +390,131 @@
         var foodFormDiv = document.getElementById("form-food-div");
         var mealForm = document.getElementById("form-meals");
         var foodServing = document.getElementById('myFormId');
+
+
+
+
+        /*** Get the url params ***/
+        const numberOfDays = 1;
+        let currentDate = new Date();
+        const prevArrow = document.querySelector('.prev');
+        const nextArrow = document.querySelector('.next');
+
+        // Converting this date to a string in the format "weekday, month day, year" using the toLocaleDateString()
+        const currentDateString = currentDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        // belongs to this element ==> <time id="current-date"></time>
+        document.getElementById('current-date').textContent = currentDateString;
+
+        // Get the prev and next arrow elements
+
+
+        let prevDateString;
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('date')) {
+            prevDateString = urlParams.get('date');
+        }
+
+        /*** To retrieve the item that was created at the time specified in the URL ***/
+
+        // 1- if we retrieve the items on load the window
+        if (location.pathname.includes('/food-diary/'+prevDateString)) {
+            window.onload = function () {
+                var currentUrl = '/food-diary/' + prevDateString;
+                $.ajax({
+                    type: "GET",
+                    url: currentUrl,
+                    data: {date: prevDateString},
+                    success: function (data) {
+                        console.log(data);
+                        console.log(currentUrl)
+                        let currentPath = window.location.pathname;
+                        let currentLanguage = currentPath.split('/')[1];
+                        console.log(currentLanguage)
+                        let output = '';
+                        for (let i = 0; i < data.length; i++) {
+                            let foodName;
+                            if (currentLanguage === 'en') {
+                                foodName = data[i].food.Food_Name.en;
+                            } else {
+                                foodName = data[i].food.Food_Name.ar;
+                            }
+                            output += `
+                <td> ${foodName} + </td>
+                <td> ${data[i].serving_size} .'x'. ${data[i].servings_per_container}</td>
+                <td> ${data[i].total_calories} kcal </td>
+        `;
+                        }
+                        document.querySelector('#bf').innerHTML = output;
+                    }
+                });
+            };
+        }
+
+        // 2- if we retrieve the items after clicking on .prev
+        document.querySelector('.prev').addEventListener('click', (event) => {
+            event.preventDefault();
+            const prevDate = new Date(currentDate.getTime() - (1 * 24 * 60 * 60 * 1000));
+            currentDate = prevDate;
+            const prevDateString = prevDate.toISOString().substring(0,10);
+            const url = new URL(location.href);
+            url.searchParams.append('date', prevDateString);
+            console.log(url.href)
+            let href = url.href
+            console.log(url.href)
+            fetch(location.href)
+                .then(response => response.text())
+                .then(data => {
+                    while(url.searchParams.get("date")) {
+                        url.searchParams.delete("date");
+                    }
+                    url.searchParams.append('date', prevDateString);
+                    window.history.pushState({}, "", url.href);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+            var currentUrl = '/food-diary/'+prevDateString;
+            $.ajax({
+                type: "GET",
+                url: currentUrl,
+                data:{date:prevDateString},
+                success: function(data) {
+                    console.log(data);
+                    console.log(currentUrl)
+                    let currentPath = window.location.pathname;
+                    let currentLanguage = currentPath.split('/')[1];
+                    console.log(currentLanguage)
+                    let output = '';
+                    for (let i = 0; i < data.length; i++) {
+                        let foodName;
+                        if(currentLanguage === 'en'){
+                            foodName = data[i].food.Food_Name.en;
+                        }else{
+                            foodName = data[i].food.Food_Name.ar;
+                        }
+                        output += `
+                <td> ${foodName} + </td>
+                <td> ${data[i].serving_size} .'x'. ${data[i].servings_per_container}</td>
+                <td> ${data[i].total_calories} kcal </td>
+        `;
+                    }
+                    document.querySelector('#bf').innerHTML = output;
+                }
+            });
+
+        });
+
+
+            // Update the date and navigate to the appropriate page when the next arrow is clicked
+        nextArrow.addEventListener('click', (event) => {
+            event.preventDefault();
+            currentDate.setDate(currentDate.getDate() + 1);
+            const nextDateString = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+            location.href = `?date=${nextDateString}`;
+        });
+
 
 
         /*yesterday.addEventListener('click', () => {

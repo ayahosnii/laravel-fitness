@@ -50,11 +50,13 @@ class FoodDairyController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function getData(Request $request)
     {
-        //
+        $data = $request->route('data');
+        $data = Breakfast::with(['food'])->where('created_at', 'like', $data.'%')->get();
+        return response()->json($data);
     }
     public function breakfast()
     {
