@@ -14532,7 +14532,7 @@ gas-pump:
 gauge:
   aliases:
     names:
-      - dashboard
+      - dashboard.blade.php
       - gauge-med
       - tachometer-alt-average
     unicodes:

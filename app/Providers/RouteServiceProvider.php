@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,7 +18,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
+    public const ADMIN = '/admin';
 
     /**
      * The controller namespace for the application.
@@ -35,7 +37,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->configureRateLimiting();
 
         $this->routes(function () {
             Route::prefix('api')
@@ -46,6 +47,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+            Route::prefix(LaravelLocalization::setLocale())
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin.php'));
         });
     }
 

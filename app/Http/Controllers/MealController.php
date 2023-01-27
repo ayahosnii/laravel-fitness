@@ -17,12 +17,10 @@ class MealController extends Controller
     public function index()
     {
         $foods = AddFood::where('user_id', Auth::user()->id)->get();
+        $all_foods = AddFood::select('Food_Name', 'calories')->get();
         $length = count($foods);
         $Auth = Auth::user()->id;
-    {
-
-    }
-        return view('meals', compact('foods', 'length'));
+        return view('meals', compact('foods', 'length', 'all_foods'));
     }
 
     public function addFood()

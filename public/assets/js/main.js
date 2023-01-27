@@ -25,3 +25,11 @@ function nextSlide() {
 // Add event listeners for prev/next buttons
 document.getElementById("prev").addEventListener("click", prevSlide);
 document.getElementById("next").addEventListener("click", nextSlide);
+
+
+
+
+
+
+/*Calendar*/
+

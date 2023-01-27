@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/templatemo-training-studio.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/calculate.css') }}" rel="stylesheet">
     <link href="{{ asset('css/wizard.css') }}" rel="stylesheet">
 
     {{--    @if(App::getLocale() == 'en')--}}
@@ -21,6 +23,7 @@
    {{-- @elseif(App::getLocale() == 'ar')
     <link href="{{ asset('assets/bootstrap/css/bootstrap.rtl.css') }}"  rel="stylesheet">
     @endif--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @yield('style-css')
 </head>
 <body>
@@ -45,7 +48,7 @@
                         <a class="nav-link mx-3" href="{{ url('/calories-calculate') }}">
                             Apps
                         </a>
-                        <a class="nav-link mx-3" href="{{route('exercises')}}">
+                        <a class="nav-link mx-3" href="{{route('exercise.categories')}}">
                             Exercies
                         </a>
                         <a class="nav-link mx-3" href="#">
@@ -54,7 +57,7 @@
                         <a class="nav-link mx-3" href="#">
                             Store
                         </a>
-                        <a class="nav-link mx-3" href="#">
+                        <a class="nav-link mx-3" href="{{route('blog')}}">
                             Bloggers
                         </a>
                     </ul>
@@ -128,10 +131,41 @@
 
             @yield('content')
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+
+    <script src="{{asset('assets/js/home-js/jquery-2.1.0.min.js')}}"></script>
+    <script type="text/javascript" src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+
+
+
+{{--
+    <script src="{{asset('assets/js/exercise-js/jquery.min.js')}}"></script>
+--}}
+
+    <!-- Bootstrap -->
+    <script src="{{asset('assets/js/home-js/popper.js')}}"></script>
+    <script src="{{asset('assets/js/home-js/bootstrap.min.js')}}"></script>
+
+    <!-- Plugins -->
+    <script src="{{asset('assets/js/home-js/scrollreveal.min.js')}}"></script>
+    <script src="{{asset('assets/js/home-js/waypoints.min.js')}}"></script>
+    <script src="{{asset('assets/js/home-js/jquery.counterup.min.js')}}"></script>
+    <script src="{{asset('assets/js/home-js/imgfix.min.js')}}"></script>
+    <script src="{{asset('assets/js/home-js/mixitup.js')}}"></script>
+    <script src="{{asset('assets/js/home-js/accordions.js')}}"></script>
+
+
+    <script src="{{asset('assets/js/exercise-js/tabs.js')}}"></script>
+
+    <!-- Global Init -->
+    <script src="{{asset('assets/js/exercise-js/isotope.min.js')}}"></script>
+    <script src="{{asset('assets/js/exercise-js/owl-carousel.js')}}"></script>
+    <script src="{{asset('assets/js/exercise-js/custom.js')}}"></script>
     @yield('scripts')
 </body>
 </html>

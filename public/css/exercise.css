@@ -1,166 +1,124 @@
-.exercise-card{
+:root {
+    --main-font-size: 30px;
+    --card-padding: 10px;
+    --card-margin: 0 50px;
+    --card-background: url(../assets/imgs/Exercise/dark-bg.jpg);
+    --img-height: 500px
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.exercise-card {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(100px, auto);
-    position : relative;
-    margin: 0 50px 0 50px;
-    padding: 10px;
+    margin: var(--card-margin);
+    padding: var(--card-padding);
     justify-content: center;
 }
 
-.cate-card-head{
+.exercise-card-head {
     grid-column: 1;
     grid-row: 1;
-
-    top: 10px;
 }
 
-@media only screen and (max-width: 300px) {
-
-    .cate-card-content {
-        grid-column: 1/ -1;
-        grid-row: 1 / -1;
-        justify-content: center;
-        width: 100%;
-        max-width: 400px;
-        right: 50%;
-        left: 15%;
-        position: absolute;
-    }
+.exercise-card-head .ex-card-title {
+    font-size: var(--main-font-size);
 }
 
-
-.slide-cate-img{
-    position: absolute;
-    height: 200px;
-    border-radius: 15px;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    max-width: 400px;
-    margin: 5px 0 10px 0;
-}
-.slide-cate-img p{
-    top: 20px;
-    left: 16px;
-    font-size: 100%;
-    color: #fff;
-    height: auto;
-    position: absolute;
-}
-
-
-.cate-card-head{
-    position: absolute;
-    top: 10px;
-    left:10%
-}
-
-.exercise-card-head{
-    position: absolute;
-    top: 10px;
-    left:10%
-}
-.exercise-card-head .ex-card-title{
-    font-size: 30px;
-}
-.exercise-card-content{
-    position: absolute;
-    grid-column: 2/ 4;
-    grid-row: 1 / 3;
-    top: 10%;
+.exercise-card-content {
+    grid-column: 2/4;
+    grid-row: 1/3;
     justify-content: center;
 }
 
+.container {
+    position: relative;
+    display: grid;
+    place-items: center;
+}
 
-
-
-.exercise-card-content #slider {
+.slider {
     position: absolute;
     width: 500px;
     height: 600px;
     border-radius: 15px;
     overflow: hidden;
     background: #ffd6ef;
+    transform: translate(-50%, 0);
+    margin: 80px;
+    left: 10%;
+    top: 50%;
 }
 
-#slider ul {
-    position: absolute;
+.slider__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     list-style: none;
     height: 100%;
-    width: 10000%;
+    width: 100%;
     padding: 0;
     margin: 0;
-    transition: all 750ms ease;
+}
+
+.slider__item{
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+.slider__item.active{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.slider__item img {
+    position: static;
+    width: 100%;
+    height: var(--img-height);
+    border-radius: 15px;
+}
+
+.slider__item .slider__title {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 3%;
+    left: 3%;
+    color: #fff;
+    font-size: var(--main-font-size);
+}
+
+.slider__countdown {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 45%;
     left: 0;
 }
-#slider ul li {
-    position: relative;
-    height: 100%;
-    transform: scale(1);
-    float: left;
-}
 
-#slider ul li p{
-    font-size: 20px;
-    text-align: center;
-}
-
-.slide-title{
-    margin: 15px;
-}
-
-#slider ul li img{
-    width: 500px;
-    height: 400px;
-}
-
-#countdown {
-    position: absolute;
-    margin: auto;
-    margin-top: 2px;
-    height: 40px;
-    width: 40px;
-    text-align: center;
-    top: 460px;
-    left: 230px
-}
-
-#countdown-number {
-    color: #fa9dcb;
-    display: inline-block;
-    line-height: 40px;
-}
-
-#countdown.countdown-wrap {
-    position: absolute;
-    bottom: 10px; /* or any other value */
-    left: 50%; /* or any other value */
-    transform: translateX(-50%); /* to center the countdown-wrap div horizontally */
-}
-
-#countdown-number {
-    position: absolute;
-    bottom: 0; /* or any other value */
-    left: 50%; /* or any other value */
-    transform: translateX(-50%); /* to center the countdown-number div horizontally */
-}
-
-
-@media (max-width: 600px) {
-    #countdown.countdown-wrap {
-        bottom: 5px; /* adjust bottom value for smaller screens */
-    }
-
-    #countdown-number {
-        font-size: 0.8em; /* adjust font-size for smaller screens */
-    }
+.slider__prev, .slider__next {
+    font-size: var(--main-font-size);
+    padding: 10px;
+    cursor: pointer;
+    margin: 90px;
 }
 
 svg {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 46%;
+    left: 46%;
     width: 40px;
     height: 40px;
     transform: rotateY(-180deg) rotateZ(-90deg);
@@ -173,42 +131,34 @@ svg circle {
     stroke-width: 2px;
     stroke: #fa9dcb;
     fill: none;
-    animation: countdown 30s linear infinite forwards;
+    animation: countdown <timerDuration>s linear infinite forwards;
+}
+
+.slider__timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+}
+
+.slider__timer svg {
+    width: 40px;
+    height: 40px;
+}
+
+.slider__timer svg circle {
+    stroke-dasharray: 113px;
+    stroke-dashoffset: 113px;
+    animation: countdown durations linear forwards;
+
 }
 
 @keyframes countdown {
     from {
-        stroke-dashoffset: 0px;
-    }
-    to {
         stroke-dashoffset: 113px;
     }
+    to {
+        stroke-dashoffset: 0px;
+    }
 }
-
-#countdown #prev, #countdown #next {
-    width: 50px;
-    line-height: 50px;
-    text-align: center;
-    color: #f388b1;
-    text-decoration: none;
-    position: absolute;
-    top: 50%;
-    border-radius: 50%;
-    font-size: 2rem;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    transform: translateY(-50%);
-    transition: all 150ms ease;
-}
-
-#countdown #prev {
-    right: 70px;
-}
-#countdown #next {
-    left: 70px;
-}
-
-#countdown #prev:hover, #countdown #next:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-    text-shadow: 0;
-}
-
