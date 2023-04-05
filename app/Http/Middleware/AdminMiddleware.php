@@ -17,10 +17,6 @@ class AdminMiddleware
      */
    public function handle($request, Closure $next)
     {
-        if (!Auth::check() || !Auth::user()->can('access-admin-dashboard')) {
-            return redirect('/login');
-        }
-
         return $next($request);
     }
 }

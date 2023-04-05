@@ -68,7 +68,6 @@
         height: 250px;
         width: 500px;
         position: relative;
-        left: 800px;
         padding: 20px;
     }
     #foodname{
@@ -145,6 +144,8 @@
             </div>
         </form>
 --}}
+
+   <div class="col-md-12">
 
         <table class="table" id="tod_tr_1" style="display: table">
             <thead>
@@ -319,48 +320,57 @@
 
     </div>
 
-    <div class="dropdown">
-        <input type="text" placeholder="Search.." id="inputSearch" style="display: none" onkeyup="searchFunction()">
-        <div id="myFoodList" class="dropdown-content" style="display: none">
-            @foreach($foods as $food)
-            <a href="#" id="foody" data-id="{{$food->id}}"  onclick="myfun(this)">{{$food->Food_Name}}</a>
-            @endforeach
-        </div>
-    </div>
-
-    <div id="form-food-div" style="display: none">
-        <form id="form-meals" action="" method="post">
-            @csrf
-        <p id="foodname"></p>
-            <div class="row">
-                <div class="col-md-12">
-                    <input name="food_id" id="food_id" hidden readonly>
-                </div>
-                <div class="col-md-6">
-                    <label for="">Serving Size</label>
-                    <input type="number" name="serving_size">
-                </div>
-                <div class="col-md-6" style="margin-top: 27px">
-                    <label for="">Unit</label>
-                    <select id="units" name="unit_id">
-                        @foreach($units as $unit)
-                            <option value="{{$unit->id}}">{{$unit->abbr}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="">Servings per container</label>
-                    <input name="servings_per_container" type="number">
-                </div>
-
-                <div class="col-md-6">
-                    <label for="">Date</label>
-                    <input id="created_at" name="created_at">
-                </div>
+<div class="container">
+ <div class="row">
+   <div class="col-md-12">
+        <div class="dropdown">
+            <input type="text" placeholder="Search.." id="inputSearch" style="display: none" onkeyup="searchFunction()">
+            <div id="myFoodList" class="dropdown-content" style="display: none">
+                @foreach($foods as $food)
+                    <a href="#" id="foody" data-id="{{$food->id}}"  onclick="myfun(this)">{{$food->Food_Name}}</a>
+                @endforeach
             </div>
-            <button type="submit" class="btn btn-pink my-3" id="add-f" href="#"></button>
-        </form>
-    </div>
+        </div>
+   </div>
+
+   <div class="col-md-12">
+        <div id="form-food-div" style="display: none">
+            <form id="form-meals" action="" method="post">
+                @csrf
+                <p id="foodname"></p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input name="food_id" id="food_id" hidden readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Serving Size</label>
+                        <input type="number" name="serving_size">
+                    </div>
+                    <div class="col-md-6" style="margin-top: 27px">
+                        <label for="">Unit</label>
+                        <select id="units" name="unit_id">
+                            @foreach($units as $unit)
+                                <option value="{{$unit->id}}">{{$unit->abbr}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Servings per container</label>
+                        <input name="servings_per_container" type="number">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Date</label>
+                        <input id="created_at" name="created_at">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-pink my-3" id="add-f" href="#"></button>
+            </form>
+        </div>
+      </div>
+</div>
+</div>
+
 @endsection
 @section('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

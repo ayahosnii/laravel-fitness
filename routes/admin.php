@@ -18,7 +18,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(
     [
         'prefix' => 'admin',
-        'middleware' => [ /*'localeSessionRedirect', 'localizationRedirect', 'localeViewPath',*/ 'admin']
+        'middleware' => [ /*'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','admin'*/]
     ], function(){
 /*    Route::group(['middleware' => 'admin'], function () {*/
 
@@ -28,7 +28,7 @@ Route::group(
     Route::get('/food/{id}', [AdminController::class, 'food_details'])->name('admin.food.details');
 
 
-    Route::get('/meal', [AdminController::class, 'meals'])->name('admin.meal');
+    Route::get('/meals', [AdminController::class, 'index'])->name('admin.meal');
     Route::get('/meals/create', [AdminController::class, 'create_meals'])->name('admin.meals.create');
     Route::post('/meals/store', [AdminController::class, 'store_meals'])->name('admin.meals.store');
 

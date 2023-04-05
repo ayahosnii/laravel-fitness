@@ -60,11 +60,16 @@ class AdminController extends Controller
     }
     public function store_meals(MealRequest $request)
     {
-        $translation = ['en' => $request->name, 'ar' => $request->name_ar];
-        Meal::create([
-           'name' => $translation,
-           'user_id' => Auth::user()->id
-        ]);
+        try {
+
+            $meal = new Meal();
+            $meal->setTranslation('name', 'en', $request->name);
+            $meal->setTranslation('name', 'ar', $request->name_ar);
+            $meal->user_id = 1;
+            $meal->save();
         return redirect()->route('admin.meals.store');
+    } catch (\Exception $e){
+            return $e;
+        }
     }
 }

@@ -12,5 +12,5 @@ class Meal extends Model
     use HasTranslations;
     public $translatable = ['name'];
     protected $table = 'meals';
-    protected $guarded = [];
+    protected $fillable = ['name', 'user_id'];
 }

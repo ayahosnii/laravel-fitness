@@ -1,111 +1,66 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
-<!-- beautify ignore:start -->
-<html
-    lang="en"
-    class="light-style layout-menu-fixed"
-    dir="ltr"
-    data-theme="theme-default"
-    data-assets-path="assets/admin/"
-    data-template="vertical-menu-template-free"
->
 <head>
-    <meta charset="utf-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
-
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
-
-    <meta name="description" content="" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{asset('assets/admin/img/favicon/favicon.ico')}}" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet"
-    />
-
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="{{asset('assets/admin/vendor/fonts/boxicons.css')}}" />
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="{{asset('assets/admin/vendor/css/core.css')}}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{asset('assets/admin/vendor/css/theme-default.css')}}" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="{{asset('assets/admin/css/demo.css')}}" />
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
-
-    <link rel="stylesheet" href="{{asset('assets/admin/vendor/libs/apex-charts/apex-charts.css')}}" />
-
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="{{asset('assets/admin/vendor/js/helpers.js')}}"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{asset('assets/admin/js/config.js')}}"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Skydash Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{asset('assets/admin/vendors/feather/feather.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/admin/vendors/ti-icons/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/admin/vendors/css/vendor.bundle.base.css')}}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{asset('assets/admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/admin/vendors/ti-icons/css/themify-icons.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/js/select.dataTables.min.css')}}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{asset('assets/admin/css2/vertical-layout-light/style.css')}}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/favicon.png" />
 </head>
-
 <body>
-<!-- Layout wrapper -->
-<div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
-        <!-- Menu -->
-
-    @include('admin.includes.menu')
-    <!-- / Menu -->
-
-        <!-- Layout container -->
-        <div class="layout-page">
-            <!-- Navbar -->
+<div class="container-scroller">
 
 @include('admin.includes.nav')
+
+        <!-- Menu -->
+
+        @include('admin.includes.menu')
+        <!-- / Menu -->
+
 @yield('content')
 
+<!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
 
-@include('admin.includes.footer')
+    <!-- plugins:js -->
+    <script src="{{asset('assets/admin/vendors/js/vendor.bundle.base.js')}}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{{asset('assets/admin/vendors/chart.js/Chart.min.js')}}"></script>
+    <script src="{{asset('assets/admin/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('assets/admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+    <script src="{{asset('assets/admin/js/dataTables.select.min.js')}}"></script>
 
-
-        <!-- Core JS -->
-            <!-- build:js assets/vendor/js/core.js -->
-            <script src="{{asset('assets/admin/vendor/libs/jquery/jquery.js')}}"></script>
-            <script src="{{asset('assets/admin/vendor/libs/popper/popper.js')}}"></script>
-            <script src="{{asset('assets/admin/vendor/js/bootstrap.js')}}"></script>
-            <script src="{{asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
-
-            <script src="{{asset('assets/admin/vendor/js/menu.js')}}"></script>
-            <!-- endbuild -->
-
-            <!-- Vendors JS -->
-            <script src="{{asset('assets/admin/vendor/libs/apex-charts/apexcharts.js')}}"></script>
-
-            <!-- Main JS -->
-            <script src="{{asset('assets/admin/js/main.js')}}"></script>
-
-            <!-- Page JS -->
-            <script src="{{asset('assets/admin/js/dashboards-analytics.js')}}"></script>
-
-            <!-- Place this tag in your head or just before your close body tag. -->
-            <script async defer src="https://buttons.github.io/buttons.js'"></script>
-@stack('scripts')
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{asset('assets/admin/js2/off-canvas.js')}}"></script>
+    <script src="{{asset('assets/admin/js2/hoverable-collapse.js')}}"></script>
+    <script src="{{asset('assets/admin/js2/template.js')}}"></script>
+    <script src="{{asset('assets/admin/js2/settings.js')}}"></script>
+    <script src="{{asset('assets/admin/js2/todolist.js')}}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{{asset('assets/admin/js2/dashboard.js')}}"></script>
+    <script src="{{asset('assets/admin/js2/Chart.roundedBarCharts.js')}}"></script>
+    <!-- End custom js for this page-->
 </body>
+
 </html>
+

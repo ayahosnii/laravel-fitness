@@ -27,7 +27,18 @@
     @yield('style-css')
 </head>
 <body>
-    <div id="app">
+
+<div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+{{--
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <a class="navbar-brand m-0 p-0" href="{{ url('/') }}">
                     <img src="{{asset('assets/imgs/logo.png')}}">
@@ -128,9 +139,42 @@
                     </ul>
                 </div>
         </nav>
+--}}
+
+        <header class="header-area header-sticky">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- ***** Logo Start ***** -->
+                            <a href="index.html" class="logo">
+                                <img src="{{asset('assets/imgs/logo.png')}}">
+                            </a>
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav">
+                                <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                                <li class="scroll-to-section"><a href="#features">About</a></li>
+                                <li class="scroll-to-section"><a href="#our-classes">Classes</a></li>
+                                <li class="scroll-to-section"><a href="#schedule">Schedules</a></li>
+                                <li class="scroll-to-section"><a href="#contact-us">Contact</a></li>
+                                <li class="main-button"><a href="#">Sign Up</a></li>
+                            </ul>
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                            <!-- ***** Menu End ***** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
 
             @yield('content')
-    </div>
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

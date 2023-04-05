@@ -1,9 +1,22 @@
 @extends('layouts.app')
-@section('style-css')
-    <link href="{{ asset('css/slider.css') }}" rel="stylesheet">
 
-@endsection
 @section('content')
+
+    <div class="main-banner" id="top">
+        <video autoplay muted loop id="bg-video">
+            <source src="assets/images/gym-video.mp4" type="video/mp4" />
+        </video>
+
+        <div class="video-overlay header-text">
+            <div class="caption">
+                <h6>work harder, get stronger</h6>
+                <h2>easy with our <em>gym</em></h2>
+                <div class="main-button scroll-to-section">
+                    <a href="#features">Become a member</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- ***** Features Item Start ***** -->
@@ -12,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="section-heading">
-                        <h2>Choose <em>Program</em></h2>
+                        <h2>Online <em>Fitness Apps</em></h2>
                         <img src="{{asset('assets/imgs/home-images/line-dec.png')}}" alt="waves">
                         <p>Training Studio is free CSS template for gyms and fitness centers. You are allowed to use this layout for your business website.</p>
                     </div>
@@ -24,9 +37,9 @@
                                 <img src="{{asset('assets/imgs/home-images/features-first-icon.jpeg')}}" alt="First One">
                             </div>
                             <div class="right-content">
-                                <h4>Basic Fitness</h4>
+                                <h4>Calculate Calories</h4>
                                 <p>Please do not re-distribute this template ZIP file on any template collection website. This is not allowed.</p>
-                                <a href="#" class="text-button">Discover More</a>
+                                <a href="{{route('calorie')}}" class="text-button">Discover More</a>
                             </div>
                         </li>
                         <li class="feature-item">
@@ -34,9 +47,9 @@
                                 <img src="{{asset('assets/imgs/home-images/features-first-icon.jpeg')}}" alt="second one">
                             </div>
                             <div class="right-content">
-                                <h4>New Gym Training</h4>
+                                <h4>Dairy</h4>
                                 <p>If you wish to support TemplateMo website via PayPal, please feel free to contact us. We appreciate it a lot.</p>
-                                <a href="#" class="text-button">Discover More</a>
+                                <a href="{{route('dairy')}}" class="text-button">Discover More</a>
                             </div>
                         </li>
                         <li class="feature-item">
@@ -44,9 +57,9 @@
                                 <img src="{{asset('assets/imgs/home-images/features-first-icon.jpeg')}}" alt="third gym training">
                             </div>
                             <div class="right-content">
-                                <h4>Basic Muscle Course</h4>
-                                <p>Credit goes to <a rel="nofollow" href="https://www.pexels.com" target="_blank">Pexels website</a> for images and video background used in this HTML template.</p>
-                                <a href="#" class="text-button">Discover More</a>
+                                <h4>Exercies</h4>
+                                <p>If you wish to support TemplateMo website via PayPal, please feel free to contact us. We appreciate it a lot.</p>
+                                <a href="{{route('exercise.categories')}}" class="text-button">Discover More</a>
                             </div>
                         </li>
                     </ul>
