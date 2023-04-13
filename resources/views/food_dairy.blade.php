@@ -796,7 +796,7 @@
 
             document.getElementById('current-date').textContent = displayDate
             document.querySelector('#created_at').value = nextDateString;
-
+//
 
             fetch(location.href)
                 .then(response => response.text())
