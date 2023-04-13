@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.nav2')
 @section('style-css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
