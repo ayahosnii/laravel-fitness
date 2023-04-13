@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AddFood;
 use App\Models\Breakfast;
+use App\Models\CalorieCalculator;
 use App\Models\Dinner;
 use App\Models\FoodDairy;
 use App\Models\Lunch;
@@ -26,11 +27,23 @@ class FoodDairyController extends Controller
         $dairies_yes = FoodDairy::whereDate('created_at', Carbon::yesterday())->get();
         $units = Unit::select()->get();
 
-        $breakfasts = Breakfast::whereDate('created_at', Carbon::today())->orderBy('created_at', 'desc')->get();
+        $breakfasts = Breakfast::whereDate('created_at', Carbon::today())
+            ->orderBy('created_at', 'desc')
+            ->where('user_id', Auth::user()->id)
+            ->whereDate('created_at', Carbon::today())
+            ->get();
         $br_total_cals = Breakfast::whereDate('created_at', Carbon::today())->where('user_id', Auth::user()->id)->sum('total_calories');
 
-        $lunches = Lunch::whereDate('created_at', Carbon::today())->orderBy('created_at', 'desc')->get();
-        $dinners = Dinner::whereDate('created_at', Carbon::today())->orderBy('created_at', 'desc')->get();
+        $lunches = Lunch::whereDate('created_at', Carbon::today())
+            ->orderBy('created_at', 'desc')
+            ->where('user_id', Auth::user()->id)
+            ->whereDate('created_at', Carbon::today())
+            ->get();
+        $dinners = Dinner::whereDate('created_at', Carbon::today())
+            ->orderBy('created_at', 'desc')
+            ->where('user_id', Auth::user()->id)
+            ->whereDate('created_at', Carbon::today())
+            ->get();
 
 
 
@@ -55,8 +68,39 @@ class FoodDairyController extends Controller
     public function getData(Request $request)
     {
         $data = $request->route('data');
-        $data = Breakfast::with(['food'])->where('created_at', 'like', $data.'%')->get();
-        return response()->json($data);
+        $user_id = Auth::user()->id;
+        $breakfast = Breakfast::with(['food'])
+            ->where('created_at', 'like', $data.'%')
+            ->where('user_id', $user_id)
+            ->get();
+        $lunch = Lunch::with(['food'])
+            ->where('created_at', 'like', $data.'%')
+            ->where('user_id', $user_id)
+            ->get();
+        $dinner = Dinner::with(['food'])
+            ->where('created_at', 'like', $data.'%')
+            ->where('user_id', $user_id)
+            ->get();
+
+        $getBrkfastCalories =  Breakfast::whereDate('created_at', $data)->where('user_id', Auth::user()->id)->sum('total_calories');
+        $getLunchCalories =    Lunch::whereDate('created_at', $data)->where('user_id', Auth::user()->id)->sum('total_calories');
+        $getDinnerCalories =   Dinner::whereDate('created_at', $data)->where('user_id', Auth::user()->id)->sum('total_calories');
+
+        $calorieGoal = CalorieCalculator::where('user_id', Auth::user()->id)->pluck('cal_result');
+        $totalConsumedCalories = $getBrkfastCalories + $getLunchCalories + $getDinnerCalories;
+//        $remainingCalories = $calorieGoal - $totalConsumedCalories;
+
+        return response()->json([
+            'breakfast' => $breakfast,
+            'lunch' => $lunch,
+            'dinner' => $dinner,
+
+            'getBrkfastCalories' => $getBrkfastCalories,
+            'getLunchCalories' => $getLunchCalories,
+            'getDinnerCalories' => $getDinnerCalories,
+            'calorieGoal' => $calorieGoal,
+            'totalConsumedCalories' => $totalConsumedCalories,
+        ]);
     }
     public function breakfast()
     {

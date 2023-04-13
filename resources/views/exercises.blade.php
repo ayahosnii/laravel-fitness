@@ -16,17 +16,17 @@
 
            <div class="cate-card-content">
                <a href="">
-               <div class="slide-cate-img" style="background-image: url({{asset('assets/imgs/Exercise/categories/push.jpg')}})">
-                   <p>Push Exercise</p>
+               <div class="slide-cate-img" style="background-image: url({{asset('assets/imgs/ExerciseController/categories/push.jpg')}})">
+                   <p>Push ExerciseController</p>
                </div>
                </a>
-                <div class="slide-cate-img" style="background-image: url({{asset('assets/imgs/Exercise/categories/pull.jpg')}})">
-                   <p>Pull Exercise</p>
+                <div class="slide-cate-img" style="background-image: url({{asset('assets/imgs/ExerciseController/categories/pull.jpg')}})">
+                   <p>Pull ExerciseController</p>
                 </div>
                <a href="{{route('exercises.legs')}}">
                <div class="slide-cate-img"
-                    style="background-image: url({{asset('assets/imgs/Exercise/categories/leg.webp')}});">
-                   <p>Leg Exercise</p>
+                    style="background-image: url({{asset('assets/imgs/ExerciseController/categories/leg.webp')}});">
+                   <p>Leg ExerciseController</p>
                 </div>
                </a>
            </div>
@@ -252,8 +252,8 @@
                 <span class="author">
                   <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
                 </span>
-                            <img src="{{asset('assets/imgs/Exercise/categories/push.jpg')}}" alt="" style="border-radius: 20px;">
-                            <h4>Push Exercise</h4>
+                            <img src="{{asset('assets/imgs/ExerciseController/categories/push.jpg')}}" alt="" style="border-radius: 20px;">
+                            <h4>Push ExerciseController</h4>
                         </div>
                         <div class="col-lg-12">
                             <div class="line-dec"></div>
@@ -268,7 +268,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="main-button">
-                                <a href="#">Exercise Now</a>
+                                <a href="#">ExerciseController Now</a>
                             </div>
                         </div>
                     </div>
@@ -281,8 +281,8 @@
                 <span class="author">
                   <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
                 </span>
-                            <img src="{{asset('assets/imgs/Exercise/categories/pull.jpg')}}" alt="" style="border-radius: 20px;">
-                            <h4>Pull Exercise</h4>
+                            <img src="{{asset('assets/imgs/ExerciseController/categories/pull.jpg')}}" alt="" style="border-radius: 20px;">
+                            <h4>Pull ExerciseController</h4>
                         </div>
                         <div class="col-lg-12">
                             <div class="line-dec"></div>
@@ -297,7 +297,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="main-button">
-                                <a href="#">Exercise Now</a>
+                                <a href="#">ExerciseController Now</a>
                             </div>
                         </div>
                     </div>
@@ -310,8 +310,8 @@
                 <span class="author">
                   <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
                 </span>
-                            <img src="{{asset('assets/imgs/Exercise/categories/leg.webp')}}" alt="" style="border-radius: 20px;">
-                            <h4>Legs Exercise</h4>
+                            <img src="{{asset('assets/imgs/ExerciseController/categories/leg.webp')}}" alt="" style="border-radius: 20px;">
+                            <h4>Legs ExerciseController</h4>
                         </div>
                         <div class="col-lg-12">
                             <div class="line-dec"></div>
@@ -326,7 +326,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="main-button">
-                                <a href="{{route('exercises.legs')}}">Exercise Now</a>
+                                <a href="{{route('exercises.legs')}}">ExerciseController Now</a>
                             </div>
                         </div>
                     </div>

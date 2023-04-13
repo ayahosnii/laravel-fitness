@@ -3,9 +3,7 @@
 @section('content')
 
     <div class="main-banner" id="top">
-        <video autoplay muted loop id="bg-video">
-            <source src="assets/images/gym-video.mp4" type="video/mp4" />
-        </video>
+            <img src="{{asset('assets/images/delicious-breakfast-meal-composition.jpg')}}" id="bg-video" />
 
         <div class="video-overlay header-text">
             <div class="caption">
@@ -34,32 +32,32 @@
                     <ul class="features-items">
                         <li class="feature-item">
                             <div class="left-icon">
-                                <img src="{{asset('assets/imgs/home-images/features-first-icon.jpeg')}}" alt="First One">
+                                <img src="{{asset('assets/imgs/home-images/kcal.png')}}" alt="First One">
                             </div>
                             <div class="right-content">
                                 <h4>Calculate Calories</h4>
                                 <p>Please do not re-distribute this template ZIP file on any template collection website. This is not allowed.</p>
-                                <a href="{{route('calorie')}}" class="text-button">Discover More</a>
+                                <a href="{{route('calorie')}}" class="text-button">Discover App</a>
                             </div>
                         </li>
                         <li class="feature-item">
                             <div class="left-icon">
-                                <img src="{{asset('assets/imgs/home-images/features-first-icon.jpeg')}}" alt="second one">
+                                <img src="{{asset('assets/imgs/home-images/dairy.png')}}" alt="second one">
                             </div>
                             <div class="right-content">
                                 <h4>Dairy</h4>
                                 <p>If you wish to support TemplateMo website via PayPal, please feel free to contact us. We appreciate it a lot.</p>
-                                <a href="{{route('dairy')}}" class="text-button">Discover More</a>
+                                <a href="{{route('dairy')}}" class="text-button">Discover App</a>
                             </div>
                         </li>
                         <li class="feature-item">
                             <div class="left-icon">
-                                <img src="{{asset('assets/imgs/home-images/features-first-icon.jpeg')}}" alt="third gym training">
+                                <img src="{{asset('assets/imgs/home-images/exercise.png')}}" alt="third gym training">
                             </div>
                             <div class="right-content">
                                 <h4>Exercies</h4>
                                 <p>If you wish to support TemplateMo website via PayPal, please feel free to contact us. We appreciate it a lot.</p>
-                                <a href="{{route('exercise.categories')}}" class="text-button">Discover More</a>
+                                <a href="{{route('exercise.categories')}}" class="text-button">Discover App</a>
                             </div>
                         </li>
                     </ul>
@@ -68,12 +66,12 @@
                     <ul class="features-items">
                         <li class="feature-item">
                             <div class="left-icon">
-                                <img src="{{asset('assets/imgs/home-images/features-first-icon.jpeg')}}" alt="fourth muscle">
+                                <img src="{{asset('assets/imgs/home-images/blog.png')}}" alt="fourth muscle">
                             </div>
                             <div class="right-content">
-                                <h4>Advanced Muscle Course</h4>
+                                <h4>Blog</h4>
                                 <p>You may want to browse through <a rel="nofollow" href="https://templatemo.com/tag/digital-marketing" target="_parent">Digital Marketing</a> or <a href="https://templatemo.com/tag/corporate">Corporate</a> HTML CSS templates on our website.</p>
-                                <a href="#" class="text-button">Discover More</a>
+                                <a href="{{route('blog')}}" class="text-button">Discover More</a>
                             </div>
                         </li>
                         <li class="feature-item">

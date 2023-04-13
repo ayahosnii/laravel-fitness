@@ -15,15 +15,15 @@
                 <div id="slider" class="slider">
                     <ul class="slider__wrap">
                         <li class="slider__item active">
-                            <img src="{{asset('assets/imgs/Exercise/legs/goblet-squad.gif')}}" alt="Goblet Squad Exercise">
+                            <img src="{{asset('assets/imgs/ExerciseController/legs/goblet-squad.gif')}}" alt="Goblet Squad Exercise">
                             <p class="slider__title">Goblet Squad</p>
                         </li>
                         <li class="slider__item">
-                            <img src="{{asset('assets/imgs/Exercise/legs/split-squat-exercise.gif')}}" alt="Split Squad Exercise">
+                            <img src="{{asset('assets/imgs/ExerciseController/legs/split-squat-exercise.gif')}}" alt="Split Squad Exercise">
                             <p class="slider__title">Split Squad</p>
                         </li>
                         <li class="slider__item">
-                            <img src="{{asset('assets/imgs/Exercise/legs/lunges-exercise.gif')}}" alt="Lunges Squad Exercise">
+                            <img src="{{asset('assets/imgs/ExerciseController/legs/lunges-exercise.gif')}}" alt="Lunges Squad Exercise">
                             <p class="slider__title">Lunges Squad</p>
                         </li>
                     </ul>

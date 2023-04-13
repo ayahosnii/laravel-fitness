@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\ExerciseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -31,5 +32,10 @@ Route::group(
     Route::get('/meals', [AdminController::class, 'index'])->name('admin.meal');
     Route::get('/meals/create', [AdminController::class, 'create_meals'])->name('admin.meals.create');
     Route::post('/meals/store', [AdminController::class, 'store_meals'])->name('admin.meals.store');
+
+
+    Route::get('/exercises', [ExerciseController::class, 'index'])->name('admin.exercise');
+    Route::get('/exercise-types/{id}', [ExerciseController::class, 'getExerciseType'])->name('admin.exercise.types');
+    Route::get('/all-exercise/{id}', [ExerciseController::class, 'getAllExercise'])->name('admin.add.exercise');
 
 });

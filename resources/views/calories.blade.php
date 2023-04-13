@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.nav2')
 @section('style-css')
     <link rel="stylesheet" href="{{asset('assets/css/cal.css')}}">
 @stop
@@ -278,24 +278,39 @@
         let weight = parseFloat($('#weight').val()) * 0.453592;
 
 
-        let height = parseFloat($("#inches").val()) * 2.54;
+        let height;
+
+
+        heightUnit.forEach(function(unit) {
+            if(unit.checked) {
+                if (unit.value === "1") {
+                    height = parseFloat($("#inches").val());
+                } else if (unit.value === "2") {
+                    height = parseFloat($("#inches").val()) * 2.54;
+                }
+            }
+
+        });
+
+        console.log(height)
+
+
         let activity = parseFloat($('#activity_level').val());
         let goal = parseInt($('#gain_loss_amount').val());
 
+        console.log(heightUnit)
 
         let result;
 
         weightUnit.forEach(function(unit) {
             if(unit.checked) {
                 if (unit.value === "1") {
-                    // Perform calculation for weight in pounds
                     if (sex === 'male') {
                         result = (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)) * activity;
                     } else {
                         result = (447.593 + (9.247 * weight) + (3.098 * height) - (4.33 * age)) * activity;
                     }
                 } else if (unit.value === "2") {
-                    // Perform calculation for weight in kg
                     if (sex === 'male') {
                         result = (88.362 + (13.397 * weight * 0.453592) + (4.799 * height) - (5.677 * age)) * activity;
                     } else {

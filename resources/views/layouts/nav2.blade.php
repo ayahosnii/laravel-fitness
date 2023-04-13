@@ -151,52 +151,11 @@
                     <div class="col-12">
                         <nav class="main-nav">
                             <!-- ***** Logo Start ***** -->
-                            <a href="index.html" class="logo">
+                            <a href="{{url('/')}}" class="logo">
                                 <img src="{{asset('assets/imgs/logo.png')}}">
                             </a>
                             <!-- ***** Logo End ***** -->
                             <!-- ***** Menu Start ***** -->
-                            <ul class="nav">
-                                <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                                <li class="scroll-to-section"><a href="#features">Apps</a></li>
-                                <li class="scroll-to-section"><a href="#our-classes">Classes</a></li>
-                                <li class="scroll-to-section"><a href="#schedule">Schedules</a></li>
-                                <li class="scroll-to-section"><a href="#contact-us">Contact</a></li>
-                                @guest
-                            @if (Route::has('login'))
-                                <li class="scroll-to-section"><a href="{{ route('login') }}">Login</a></li>
-                            @endif
-
-                             @if (Route::has('register'))
-                                <li class="main-button"><a href="{{ route('register') }}">Sign Up</a></li>
-                                @endif
-                                @else
-                                    <li class="main-button">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                            {{ Auth::user()->name }}
-                                        </a>
-
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{route('profile',  Auth::user()->user_name)}}">
-
-                                                Setting
-                                            </a>
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-
-
-
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </li>
-                                @endguest
-                            </ul>
 
                             <a class='menu-trigger'>
 

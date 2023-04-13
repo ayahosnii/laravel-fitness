@@ -18,6 +18,8 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('assets/admin/css2/vertical-layout-light/style.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
     <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png" />
 </head>
@@ -59,7 +61,15 @@
     <!-- Custom js for this page-->
     <script src="{{asset('assets/admin/js2/dashboard.js')}}"></script>
     <script src="{{asset('assets/admin/js2/Chart.roundedBarCharts.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+    // In your Javascript (external.js resource or <script> tag)
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
     <!-- End custom js for this page-->
+@stack('scripts')
 </body>
 
 </html>

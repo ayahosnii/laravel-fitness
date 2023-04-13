@@ -53,9 +53,9 @@ figure, header, nav, section, article, aside, footer, figcaption {
   height: 0;
 }
 
-.clearfix {
+/*.clearfix {
   display: inline-block;
-}
+}*/
 
 html[xmlns] .clearfix {
   display: block;
