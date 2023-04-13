@@ -621,39 +621,6 @@
                         document.querySelector('#myCalories').innerHTML = 'Goal:'+ data.calorieGoal +
                             ' consumed:' + data.totalConsumedCalories + ' remaining:' + remainingCalories;
 
-
-
-                        var bar = new ProgressBar.Line('#progress', {
-                            strokeWidth: 4,
-                            easing: 'easeInOut',
-                            duration: 1400,
-                            color: '#FFEA82',
-                            trailColor: '#eee',
-                            trailWidth: 1,
-                            text: {
-                                style: {
-                                    color: '#999',
-                                    position: 'absolute',
-                                    right: '0',
-                                    top: '30px',
-                                    padding: 0,
-                                    margin: 0,
-                                    transform: null
-                                },
-                                autoStyleContainer: false
-                            },
-                            from: {color: '#FFEA82'},
-                            to: {color: '#ED6A5A'},
-                            step: function(state, line) {
-                                var remainingC = data.calorieGoal - data.totalConsumedCalories;
-                                var consumedCalories = data.totalConsumedCalories;
-                                var value = Math.round((remainingC / (remainingC + consumedCalories)) * 100) / 100;
-                                line.setText(value);
-                                line.path.setAttribute('stroke', state.color);
-                            }
-                        });
-
-
                     }
                 });
             };
@@ -828,6 +795,8 @@
 
 
             document.getElementById('current-date').textContent = displayDate
+            document.querySelector('#created_at').value = nextDateString;
+
 
             fetch(location.href)
                 .then(response => response.text())
@@ -920,50 +889,6 @@
                     var remainingCalories = (data.calorieGoal - data.totalConsumedCalories).toFixed(2)
                     document.querySelector('#myCalories').innerHTML = 'Goal:'+ data.calorieGoal +
                         ' consumed:' + data.totalConsumedCalories + ' remaining:' + remainingCalories;
-
-
-
-
-                    var bar = new ProgressBar.Line('#progress', {
-                        strokeWidth: 4,
-                        easing: 'easeInOut',
-                        duration: 1400,
-                        color: '#FFEA82',
-                        trailColor: '#eee',
-                        trailWidth: 1,
-                        svgStyle: {width: '100%', height: '100%'},
-                        text: {
-                            style: {
-                                color: '#999',
-                                position: 'absolute',
-                                right: '0',
-                                top: '30px',
-                                padding: 0,
-                                margin: 0,
-                                transform: null
-                            },
-                            autoStyleContainer: false
-                        },
-                        from: {color: '#FFEA82'},
-                        to: {color: '#ED6A5A'},
-                        step: function(state, line) {
-                            var remainingC = data.calorieGoal - data.totalConsumedCalories;
-                            var consumedCalories = data.totalConsumedCalories;
-                            var value = Math.round((remainingC / (remainingC + consumedCalories)) * 100) / 100;
-                            line.setText(value);
-                            line.path.setAttribute('stroke', state.color);
-                        }
-                    });
-
-                    // Animate the progress bar
-                    bar.animate(1.0);
-
-
-                    // Animate the progress bar
-                    bar.animate(1.0);
-
-
-
 
                 }
             });
