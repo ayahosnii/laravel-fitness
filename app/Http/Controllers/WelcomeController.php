@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\FitnessClass;
+use App\Models\admin\FitnessClass;
 use App\Models\admin\Trainer;
 use Illuminate\Http\Request;
 
