@@ -10,7 +10,7 @@
                 <h6>work harder, get stronger</h6>
                 <h2>easy with our <em>gym</em></h2>
                 <div class="main-button scroll-to-section">
-                    <a href="#features">Become a member</a>
+                    <a href="{{route('membership')}}">Become a member</a>
                 </div>
             </div>
         </div>
@@ -134,47 +134,24 @@
             <div class="row" id="tabs">
                 <div class="col-lg-4">
                     <ul>
-                        <li><a href='#tabs-1'><img src="{{asset('assets/imgs/home-images/tabs-first-icon.png')}}" alt="">First Training Class</a></li>
-                        <li><a href='#tabs-2'><img src="{{asset('assets/imgs/home-images/tabs-first-icon.png')}}" alt="">Second Training Class</a></a></li>
-                        <li><a href='#tabs-3'><img src="{{asset('assets/imgs/home-images/tabs-first-icon.png')}}" alt="">Third Training Class</a></a></li>
-                        <li><a href='#tabs-4'><img src="{{asset('assets/imgs/home-images/tabs-first-icon.png')}}" alt="">Fourth Training Class</a></a></li>
+                        @foreach($classes as $class)
+                        <li><a href='#tabs-{{$class->id}}'><img src="{{asset('assets/imgs/home-images/tabs-first-icon.png')}}" alt="">{{$class->name}}</a></li>
+                        @endforeach
                         <div class="main-rounded-button"><a href="#">View All Schedules</a></div>
                     </ul>
                 </div>
                 <div class="col-lg-8">
                     <section class='tabs-content'>
-                        <article id='tabs-1'>
-                            <img src="{{asset('assets/imgs/home-images/training-image-01.jpg')}}" alt="First Class">
-                            <h4>First Training Class</h4>
-                            <p>Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.</p>
+                        @foreach($classes as $class)
+                        <article id='tabs-{{$class->id}}'>
+                            <img src="{{asset('assets/imgs/home-images/training-image-01.jpg')}}" alt="{{$class->name}}">
+                            <h4>{{$class->name}}</h4>
+                            <p>{{$class->description}}</p>
                             <div class="main-button">
                                 <a href="#">View Schedule</a>
                             </div>
                         </article>
-                        <article id='tabs-2'>
-                            <img src="{{asset('assets/imgs/home-images/training-image-02.jpg')}}" alt="Second Training">
-                            <h4>Second Training Class</h4>
-                            <p>Integer dapibus, est vel dapibus mattis, sem mauris luctus leo, ac pulvinar quam tortor a velit. Praesent ultrices erat ante, in ultricies augue ultricies faucibus. Nam tellus nibh, ullamcorper at mattis non, rhoncus sed massa. Cras quis pulvinar eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                            <div class="main-button">
-                                <a href="#">View Schedule</a>
-                            </div>
-                        </article>
-                        <article id='tabs-3'>
-                            <img src="{{asset('assets/imgs/home-images/training-image-03.jpg')}}" alt="Third Class">
-                            <h4>Third Training Class</h4>
-                            <p>Fusce laoreet malesuada rhoncus. Donec ultricies diam tortor, id auctor neque posuere sit amet. Aliquam pharetra, augue vel cursus porta, nisi tortor vulputate sapien, id scelerisque felis magna id felis. Proin neque metus, pellentesque pharetra semper vel, accumsan a neque.</p>
-                            <div class="main-button">
-                                <a href="#">View Schedule</a>
-                            </div>
-                        </article>
-                        <article id='tabs-4'>
-                            <img src="{{asset('assets/imgs/home-images/training-image-04.jpg')}}" alt="Fourth Training">
-                            <h4>Fourth Training Class</h4>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean ultrices elementum odio ac tempus. Etiam eleifend orci lectus, eget venenatis ipsum commodo et.</p>
-                            <div class="main-button">
-                                <a href="#">View Schedule</a>
-                            </div>
-                        </article>
+                        @endforeach
                     </section>
                 </div>
             </div>
@@ -209,36 +186,14 @@
                     <div class="schedule-table filtering">
                         <table>
                             <tbody>
+                            @foreach($classes as $class)
                             <tr>
-                                <td class="day-time">Fitness Class</td>
-                                <td class="monday ts-item show" data-tsmeta="monday">10:00AM - 11:30AM</td>
-                                <td class="tuesday ts-item" data-tsmeta="tuesday">2:00PM - 3:30PM</td>
-                                <td>William G. Stewart</td>
+                                <td class="day-time">{{$class->name}}</td>
+                                <td class="{{$class->day1}} ts-item show" data-tsmeta="{{$class->day1}}">{{$class->day1_time}}</td>
+                                <td class="{{$class->day2}} ts-item" data-tsmeta="{{$class->day2}}">{{$class->day2_time}}</td>
+                                <td>{{$class->trainer->name}}</td>
                             </tr>
-                            <tr>
-                                <td class="day-time">Muscle Training</td>
-                                <td class="friday ts-item" data-tsmeta="friday">10:00AM - 11:30AM</td>
-                                <td class="thursday friday ts-item" data-tsmeta="thursday" data-tsmeta="friday">2:00PM - 3:30PM</td>
-                                <td>Paul D. Newman</td>
-                            </tr>
-                            <tr>
-                                <td class="day-time">Body Building</td>
-                                <td class="tuesday ts-item" data-tsmeta="tuesday">10:00AM - 11:30AM</td>
-                                <td class="monday ts-item show" data-tsmeta="monday">2:00PM - 3:30PM</td>
-                                <td>Boyd C. Harris</td>
-                            </tr>
-                            <tr>
-                                <td class="day-time">Yoga Training Class</td>
-                                <td class="wednesday ts-item" data-tsmeta="wednesday">10:00AM - 11:30AM</td>
-                                <td class="friday ts-item" data-tsmeta="friday">2:00PM - 3:30PM</td>
-                                <td>Hector T. Daigle</td>
-                            </tr>
-                            <tr>
-                                <td class="day-time">Advanced Training</td>
-                                <td class="thursday ts-item" data-tsmeta="thursday">10:00AM - 11:30AM</td>
-                                <td class="wednesday ts-item" data-tsmeta="wednesday">2:00PM - 3:30PM</td>
-                                <td>Bret D. Bowers</td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -260,15 +215,21 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($trainers as $trainer)
                 <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="{{asset('assets/imgs/home-images/first-trainer.jpg')}}" alt="">
+                            <img src="{{$trainer->profile_picture}}" alt="">
                         </div>
                         <div class="down-content">
-                            <span>Strength Trainer</span>
-                            <h4>Bret D. Bowers</h4>
-                            <p>Bitters cliche tattooed 8-bit distillery mustache. Keytar succulents gluten-free vegan church-key pour-over seitan flannel.</p>
+                            @foreach($trainer->specializations->take(2) as $specialization)
+                            <span>{{$specialization->name}} </span>
+                            @endforeach
+                            <span>Trainer</span>
+                            <h4>{{$trainer->name}}</h4>
+                            <p>
+                                {{$trainer->biography}}
+                            </p>
                             <ul class="social-icons">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -278,42 +239,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="{{asset('assets/imgs/home-images/second-trainer.jpg')}}" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>Muscle Trainer</span>
-                            <h4>Hector T. Daigl</h4>
-                            <p>Bitters cliche tattooed 8-bit distillery mustache. Keytar succulents gluten-free vegan church-key pour-over seitan flannel.</p>
-                            <ul class="social-icons">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="{{asset('assets/imgs/home-images/third-trainer.jpg')}}" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>Power Trainer</span>
-                            <h4>Paul D. Newman</h4>
-                            <p>Bitters cliche tattooed 8-bit distillery mustache. Keytar succulents gluten-free vegan church-key pour-over seitan flannel.</p>
-                            <ul class="social-icons">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

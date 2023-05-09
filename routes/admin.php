@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\ExerciseController;
+use App\Http\Controllers\TrainerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -38,4 +39,5 @@ Route::group(
     Route::get('/exercise-types/{id}', [ExerciseController::class, 'getExerciseType'])->name('admin.exercise.types');
     Route::get('/all-exercise/{id}', [ExerciseController::class, 'getAllExercise'])->name('admin.add.exercise');
 
+    Route::get('/trainer', [TrainerController::class, 'index'])->name('admin.trainer');
 });

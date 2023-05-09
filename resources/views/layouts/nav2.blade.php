@@ -14,9 +14,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/templatemo-training-studio.css') }}" rel="stylesheet">
     <link href="{{ asset('css/calculate.css') }}" rel="stylesheet">
     <link href="{{ asset('css/wizard.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
 
     <!-- DATE-PICKER -->
     <link rel="stylesheet" href="{{asset('assets/vendor/date-picker/css/datepicker.min.cs')}}s">
@@ -145,28 +146,60 @@
         </nav>
 --}}
 
-        <header class="header-area header-sticky">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <nav class="main-nav">
-                            <!-- ***** Logo Start ***** -->
-                            <a href="{{url('/')}}" class="logo">
-                                <img src="{{asset('assets/imgs/logo.png')}}">
-                            </a>
-                            <!-- ***** Logo End ***** -->
-                            <!-- ***** Menu Start ***** -->
+<header class="section-header-memberships">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top main-navi">
+        <a class="navbar-brand" href="/"><img src="{{asset('assets/imgs/logo.png')}}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                            <a class='menu-trigger'>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><span>Home</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html"><span>About us</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="classes.html"><span>classes</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="trainers.html"><span>trainers</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="membership.html"><span>membership</span></a>
+                </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="schedule.html"><span>SCHEDULE</span></a>
+                </li>
 
-                            </a>
-                            <!-- ***** Menu End ***** -->
-                        </nav>
+                <li class="nav-item">
+                    <a class="nav-link" href="gallery.html"><span>gallery</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">
+                        <span>news</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: rgba(5, 0, 0, 0.77);">
+                        <a class="nav-link" href="news.html"><span>news</span></a>
+                        <a class="nav-link" href="news-grid.html"><span>news grid</span></a>
+                        <a class="nav-link" href="news-details.html"><span>News Details</span></a>
                     </div>
-                </div>
-            </div>
-        </header>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="shop.html"><span>shop</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html"><span>contact</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</header>
 
             @yield('content')
 

@@ -2,9 +2,12 @@
 
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CreditController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\FoodDairyController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -23,9 +26,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 \Illuminate\Support\Facades\Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile/{user_name}', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
@@ -53,6 +57,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/exercise-categories/{type}', [ExerciseController::class, 'types'])->name('exercise.types');
     Route::get('/exercises/{id}', [ExerciseController::class, 'exerciseName'])->name('exercises');
 //Route::get('/exercises/legs', [ExerciseController::class, 'legs'])->name('exercises.legs');
+
+    Route::get('/membership', [MembershipController::class, 'index'])->name('membership');
+    Route::post('/membership', [MembershipController::class, 'store'])->name('membership.store');
+    Route::get('/membership/{slug}', [MembershipController::class, 'create'])->name('membership.register');
+    Route::post('/membership/credit',[CreditController::class, 'credit'])->name('credit');
+    Route::get('/membership/callback',[CreditController::class, 'callback']);
+
 
     Route::view('add-food', 'livewire.show_form')->name('add.food');
 

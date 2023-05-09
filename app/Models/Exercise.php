@@ -12,6 +12,5 @@ class Exercise extends Model
     public function getImageAttribute($val)
     {
         return ($val !== null) ? asset('assets/imgs/Exercise/all/' . $val) : "";
-
     }
 }
