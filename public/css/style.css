@@ -443,10 +443,10 @@ video {
 }
 
 .plan-price {
-    font-size: 300%;
+    font-size: 200%;
     margin-bottom: 10px;
     font-weight: 100;
-    color: #dc3545;
+    color: #525da9;
 }
 
 .plan-price span {
@@ -465,6 +465,29 @@ video {
     font-weight: 100;
 }
 
+.section-membership .list-group li  {
+    background-color: #f1f2f9;
+}
+.section-membership .card-header  {
+    background-color: #f1f2f9;
+}
+.section-membership .sign-up-pre  {
+    background-color: #f1f2f9;
+}
+.section-membership .card-header-style  {
+    padding: 40px 0 0 40px;
+
+    background: #f1f2f9;
+}
+.section-membership .memberli  {
+    padding: 10px;
+    background: #f1f2f9;
+}
+
+.section-membership .card:hover  {
+    border: #00305f;
+}
+
 .sign-up-pre,
 .sign-up-nor {
     width: 100%;
@@ -475,10 +498,10 @@ video {
 .sign-up-pre a:link,
 .sign-up-pre a:visited {
     text-decoration: none;
-    background-color: #dc3545;
+    background-color: #ff5065;
     padding: 8px 0;
     font-size: 100%;
-    border-radius: 200px;
+    border-radius: 20px;
     -webkit-transition: 0.3s;
     transition: 0.3s;
     display: inline-block;
@@ -496,7 +519,7 @@ video {
 
 .sign-up-pre a:hover,
 .sign-up-pre a:active {
-    background-color: #c56d17;
+    background-color: #00305f;
 }
 
 .sign-up-nor a:link,
@@ -532,9 +555,8 @@ video {
     color: #fff;
 }
 
-.box-mem {
-    margin-bottom: 30px;
-}
+
+
 
 /*-----------------------------------------------*/
 /*-------------------FOOTER----------------------*/

@@ -111,44 +111,44 @@
                 </div>
             </div>
         </div>
-    </section>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                @if ($message = \Session::get('success'))
-                    <div class="custom-alerts alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                        {!! $message !!}
-                    </div>
-                    <?php \Session::forget('success');?>
-                @endif
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    @if ($message = \Session::get('success'))
+                        <div class="custom-alerts alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                            {!! $message !!}
+                        </div>
+                        <?php \Session::forget('success');?>
+                    @endif
 
-                @if ($message = \Session::get('error'))
-                    <div class="custom-alerts alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                        {!! $message !!}
-                    </div>
-                    <?php \Session::forget('error');?>
-                @endif
-                <h2 style="text-align: center"> Checkout Form</h2>
-                <div class="col-md-12">
-                    <div class="col-75">
-                        <div class="container">
+                    @if ($message = \Session::get('error'))
+                        <div class="custom-alerts alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                            {!! $message !!}
+                        </div>
+                        <?php \Session::forget('error');?>
+                    @endif
+                    <h2 style="text-align: center"> Checkout Form</h2>
+                    <div class="col-md-12">
+                        <div class="col-75">
+                            <div class="container">
 
-                            <div style="text-align: center" class="row">
-                                <div class="col-md-12">
-                                    <form action="{{route('credit')}}" method="POST">
-                                        {{ csrf_field() }}
-                                        <input style="width: fit-content" type="submit" value="Paymob" class="btn">
-                                    </form>
+                                <div style="text-align: center" class="row">
+                                    <div class="col-md-12">
+                                        <form action="{{route('credit')}}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input style="width: fit-content" type="submit" value="Paymob" class="btn">
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
 @endsection

@@ -35,8 +35,16 @@
                                 <img src="{{asset('assets/imgs/home-images/kcal.png')}}" alt="First One">
                             </div>
                             <div class="right-content">
+
+
+                             <a href="{{route('calorie')}}"">
                                 <h4>Calculate Calories</h4>
-                                <p>Please do not re-distribute this template ZIP file on any template collection website. This is not allowed.</p>
+                             </a>
+
+                                <p>
+                                    Calculate Calories is a web application that enables users to track and monitor
+                                    their calorie intake and expenditure for effective dietary management and fitness goals.
+                                </p>
                                 <a href="{{route('calorie')}}" class="text-button">Discover App</a>
                             </div>
                         </li>
@@ -45,7 +53,9 @@
                                 <img src="{{asset('assets/imgs/home-images/dairy.png')}}" alt="second one">
                             </div>
                             <div class="right-content">
+                                <a href="{{route('dairy')}}" class="text-button">
                                 <h4>Dairy</h4>
+                                </a>
                                 <p>If you wish to support TemplateMo website via PayPal, please feel free to contact us. We appreciate it a lot.</p>
                                 <a href="{{route('dairy')}}" class="text-button">Discover App</a>
                             </div>
@@ -76,22 +86,12 @@
                         </li>
                         <li class="feature-item">
                             <div class="left-icon">
-                                <img src="{{asset('assets/imgs/home-images/features-first-icon.jpeg')}}" alt="training fifth">
+                                <img src="{{asset('assets/imgs/home-images/water.jpg')}}" alt="training fifth">
                             </div>
                             <div class="right-content">
-                                <h4>Yoga Training</h4>
+                                <h4>Water Tracker</h4>
                                 <p>This template is built on Bootstrap v4.3.1 framework. It is easy to adapt the columns and sections.</p>
-                                <a href="#" class="text-button">Discover More</a>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="{{asset('assets/imgs/home-images/features-first-icon.jpeg')}}" alt="gym training">
-                            </div>
-                            <div class="right-content">
-                                <h4>Body Building Course</h4>
-                                <p>Suspendisse fringilla et nisi et mattis. Curabitur sed finibus nisi. Integer nibh sapien, vehicula et auctor.</p>
-                                <a href="#" class="text-button">Discover More</a>
+                                <a href="#" class="text-button">Comming soon</a>
                             </div>
                         </li>
                     </ul>

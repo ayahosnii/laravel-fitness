@@ -146,8 +146,8 @@
         </nav>
 --}}
 
-<header class="section-header-memberships">
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top main-navi">
+<header class="header-area header-sticky">
+    <nav class="navbar navbar-expand-lg fixed-top main-navi" style="background: #4c536f">
         <a class="navbar-brand" href="/"><img src="{{asset('assets/imgs/logo.png')}}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

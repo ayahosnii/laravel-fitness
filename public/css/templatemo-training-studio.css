@@ -191,7 +191,7 @@ body {
 }
 
 .main-button a:hover {
-  background-color: #f9735b;
+  background-color: #e2e2e2;
 }
 
 
@@ -324,7 +324,7 @@ header
 }
 
 .header-area .main-nav .nav li:last-child a:hover {
-  background-color: #f9735b;
+  background-color: #e2e2e2;
   opacity: 1;
 }
 
@@ -617,7 +617,7 @@ banner
 
 .video-overlay {
     position: absolute;
-    background-color: rgba(35,45,57,0.8);
+    background-color: rgb(85 81 81 / 50%);
     top: 0;
     left: 0;
     bottom: 7px;
@@ -788,7 +788,7 @@ Our Classes
   background-color: #dc3545;
 }
 #tabs .main-rounded-button a:hover {
-  background-color: #f9735b;
+  background-color: #e2e2e2;
 }
 #tabs ul li a img {
   max-width: 100%;
@@ -1072,7 +1072,7 @@ contact
 }
 
 .contact-form button:hover {
-  background-color: #f9735b;
+  background-color: #e2e2e2;
 }
 
 
@@ -1116,7 +1116,7 @@ preloader
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #232d39;
+    background-color: #f47da8;
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
@@ -1168,7 +1168,7 @@ preloader
     position: relative;
     width: 142px;
     height: 40px;
-    background: #232d39;
+    background: #f47da8;
 }
 
 .preloader-inner .dot {
@@ -1177,7 +1177,7 @@ preloader
     height: 16px;
     top: 12px;
     left: 15px;
-    background: #fff;
+    background: #232d39;
     border-radius: 50%;
     -webkit-transform: translateX(0);
     transform: translateX(0);
