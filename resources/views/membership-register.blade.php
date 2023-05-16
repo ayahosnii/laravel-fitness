@@ -136,12 +136,18 @@
 
                                 <div style="text-align: center" class="row">
                                     <div class="col-md-12">
-                                        <form action="{{route('credit')}}" method="POST">
-                                            {{ csrf_field() }}
-                                            <input style="width: fit-content" type="submit" value="Paymob" class="btn">
-                                        </form>
+                                        <div class="col-75">
+                                            <div class="container">
+                                                <div style="text-align: center" class="row">
+                                                    <div class="col-md-12">
+                                                        <button id="paymobButton" class="btn">Paymob</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+
+                                    <div id="paymobContainer"></div> <!-- Add this div element -->                                </div>
 
                             </div>
                         </div>
@@ -151,4 +157,41 @@
         </div>
     </section>
 
+@endsection
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('paymobButton').addEventListener('click', function () {
+                // Make a POST request to your controller action
+                fetch('{{ route('credit') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Get the iframe URL from the response and set it as the iframe source
+                            const iframeUrl = data.iframe_url;
+                            const iframe = document.createElement('iframe');
+                            iframe.src = iframeUrl;
+                            iframe.width = '100%';
+                            iframe.height = '500px';
+
+                            const container = document.getElementById('paymobContainer');
+                            container.innerHTML = ''; // Clear the container
+                            container.appendChild(iframe);
+                        } else {
+                            // Handle error response
+                            console.error('Error:', data.error_message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    </script>
 @endsection

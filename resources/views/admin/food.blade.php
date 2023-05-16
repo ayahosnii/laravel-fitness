@@ -30,10 +30,10 @@
                     <td><span class="badge bg-label-{{$food->for_member == 1 ? 'primary' : 'danger'}} me-1">{{$food->status}}</span></td>
                     <td>
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
+                            <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuIconButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="ti-settings"></i>
                             </button>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton4">
                                 <a class="dropdown-item" href="{{route('admin.food.details', $food->id)}}"
                                 ><i class="bx bx-show-alt me-1"></i> Show</a
                                 >

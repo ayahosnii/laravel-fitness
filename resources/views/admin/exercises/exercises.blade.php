@@ -35,9 +35,30 @@
                         <th>counter</th>
                         <th>Image</th>
                         <th>MET</th>
+                        <th>Settings</th>
                     </tr>
                     </thead>
                     <tbody id="all-exercises" class="table-border-bottom-0">
+                    <td>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuIconButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="ti-settings"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton4">
+                                <a class="dropdown-item" href="#"
+                                ><i class="bx bx-show-alt me-1"></i> Show</a
+                                >
+
+                                <a class="dropdown-item" href="#"
+                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
+                                >
+
+                                <a class="dropdown-item" href="javascript:void(0);"
+                                ><i class="bx bx-trash me-1"></i> Delete</a
+                                >
+                            </div>
+                        </div>
+                    </td>
                     </tbody>
                 </table>
             </div>
