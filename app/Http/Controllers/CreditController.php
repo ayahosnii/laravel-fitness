@@ -14,10 +14,7 @@ class CreditController extends Controller
         $token = $this->getToken();
         $order = $this->createOrder($token);
         $paymentToken = $this->getPaymentToken($order, $token);
-
-        $iframeUrl = 'https://portal.weaccept.co/api/acceptance/iframes/' . env('PAYMOB_IFRAME_ID') . '?payment_token=' . $paymentToken;
-
-        return response()->json(['success' => true, 'iframe_url' => $iframeUrl]);
+        return Redirect::away('https://portal.weaccept.co/api/acceptance/iframes/' . env('PAYMOB_IFRAME_ID') . '?payment_token=' . $paymentToken);
     }
 
     public function getToken()
