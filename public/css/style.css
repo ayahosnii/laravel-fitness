@@ -251,7 +251,7 @@ section {
 
 .main-navi ul li a:link span,
 .main-navi ul li a:visited span {
-    color: rgb(221, 221, 221);
+    color: #2196F3;
     font-size: 70%;
     text-transform: uppercase;
     border-bottom: 2px solid transparent;

@@ -124,7 +124,7 @@ function updateTimerAndSlide() {
         if (currentSlide === slides.length - 1) {
             clearInterval(timerIntervalId);
             setTimeout(() => {
-                window.location.href = "exercises/legs/endPage";
+                window.location.href = "exercises/endPage";
             }, 3000);
         } else {
             clearInterval(timerIntervalId);

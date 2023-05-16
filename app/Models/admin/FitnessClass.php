@@ -9,6 +9,7 @@ class FitnessClass extends Model
 {
     use HasFactory;
     protected $table = 'fitness_classes';
+    protected $guarded = [];
 
 
     public function trainer()
