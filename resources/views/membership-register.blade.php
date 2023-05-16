@@ -140,8 +140,7 @@
                                             <div class="container">
                                                 <div style="text-align: center" class="row">
                                                     <div class="col-md-12">
-                                                        <iframe src="https://portal.weaccept.co/api/acceptance/iframes/
-                                            {{ env('PAYMOB_IFRAME_ID') }}?payment_token={{-- $paymentToken --}}" width="100%" height="600px"></iframe>
+                                                        <button id="paymobButton" class="btn">Paymob</button>
                                                     </div>
                                                 </div>
                                             </div>
