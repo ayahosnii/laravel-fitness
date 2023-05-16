@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin\FitnessClass;
+use App\Models\admin\FitnessClass;
 use Illuminate\Database\Seeder;
 
 class ClassesTableSeeder extends Seeder
