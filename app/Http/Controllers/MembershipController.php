@@ -30,6 +30,8 @@ class MembershipController extends Controller
         $memberships = Membership::get();
         $membership = Membership::find($id);
         $auth = \Illuminate\Support\Facades\Auth::user();
+
+
         return view('membership-register', compact('memberships', 'id', 'membership', 'auth'));
     }
 
